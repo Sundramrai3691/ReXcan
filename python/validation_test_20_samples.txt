@@ -1,0 +1,86 @@
+Loading Hugging Face dataset...
+✓ Loaded dataset with 2043 samples
+
+Inspecting first sample structure...
+Sample type: <class 'dict'>
+Sample keys: ['image', 'id', 'parsed_data', 'raw_data']
+  image: <class 'PIL.JpegImagePlugin.JpegImageFile'> - PIL.Image
+  id: <class 'str'> - 0
+  parsed_data: <class 'str'> - {"xml": "", "json": "{'header': {'invoice_no': '40378170', 'invoice_date': '10/15/2012', 'seller': '
+  raw_data: <class 'str'> - {"ocr_words": "['Invoice no: 40378170', 'Date of issue:', '10/15/2012', 'Seller:', 'Client:', 'Patel
+
+Processing 20 samples...
+
+[1/20] Processing sample 0...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[2/20] Processing sample 1...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[3/20] Processing sample 2...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[4/20] Processing sample 3...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[5/20] Processing sample 4...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[6/20] Processing sample 5...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[7/20] Processing sample 6...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[8/20] Processing sample 7...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[9/20] Processing sample 8...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[10/20] Processing sample 9...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[11/20] Processing sample 10...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[12/20] Processing sample 11...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[13/20] Processing sample 12...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[14/20] Processing sample 13...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[15/20] Processing sample 14...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[16/20] Processing sample 15...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[17/20] Processing sample 16...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[18/20] Processing sample 17...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[19/20] Processing sample 18...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+[20/20] Processing sample 19...
+  ⚠️  Error: Extraction failed: cannot access local variable 'total_text_length' where it is not associated with a value
+
+============================================================
+VALIDATION SUMMARY
+============================================================
+Total Samples Processed: 20
+Successful Extractions: 0
+Failed Extractions: 20
+Average Accuracy: 0.00%
+LLM Usage Rate: 0.00%
+Samples with LLM: 0/0
+
+Field-level Accuracy:
+
+Results saved to validation_results.json

@@ -1,0 +1,584 @@
+{
+  "summary": {
+    "total_samples": 20,
+    "overall_accuracy": 0.86,
+    "field_stats": {
+      "invoice_id": {
+        "correct": 18,
+        "total": 20,
+        "missing": 0,
+        "incorrect": 2
+      },
+      "invoice_date": {
+        "correct": 18,
+        "total": 20,
+        "missing": 1,
+        "incorrect": 1
+      },
+      "total_amount": {
+        "correct": 11,
+        "total": 20,
+        "missing": 0,
+        "incorrect": 9
+      },
+      "currency": {
+        "correct": 20,
+        "total": 20,
+        "missing": 0,
+        "incorrect": 0
+      },
+      "vendor_name": {
+        "correct": 19,
+        "total": 20,
+        "missing": 0,
+        "incorrect": 1
+      }
+    },
+    "method_usage": {
+      "heuristic": 20,
+      "llm": 0
+    }
+  },
+  "samples": [
+    {
+      "sample_id": 0,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "40378170",
+        "invoice_date": "10/15/2012",
+        "total_amount": "$8,25",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "40378170",
+        "invoice_date": "2012-10-15",
+        "total_amount": 8.25,
+        "currency": "USD",
+        "vendor_name": "Patel, Thompson and"
+      },
+      "llm_used": false,
+      "processing_time": 9.593217849731445
+    },
+    {
+      "sample_id": 1,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "61356291",
+        "invoice_date": "09/06/2012",
+        "total_amount": "$ 212,09",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "61356291",
+        "invoice_date": "2012-09-06",
+        "total_amount": 212.09,
+        "currency": "USD",
+        "vendor_name": "Chapman, and Green"
+      },
+      "llm_used": false,
+      "processing_time": 8.919150114059448
+    },
+    {
+      "sample_id": 2,
+      "accuracy": 0.6,
+      "matches": {
+        "invoice_id": false,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "39280409",
+        "invoice_date": "07/06/2014",
+        "total_amount": "$1767,34",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "72057",
+        "invoice_date": "2014-07-06",
+        "total_amount": 106.0,
+        "currency": "USD",
+        "vendor_name": "Castillo"
+      },
+      "llm_used": false,
+      "processing_time": 8.217448949813843
+    },
+    {
+      "sample_id": 3,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "27301261",
+        "invoice_date": "10/09/2012",
+        "total_amount": "$ 544,46",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "27301261",
+        "invoice_date": "2012-10-09",
+        "total_amount": 544.46,
+        "currency": "USD",
+        "vendor_name": "Plains LLC"
+      },
+      "llm_used": false,
+      "processing_time": 9.022307872772217
+    },
+    {
+      "sample_id": 4,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "10823698",
+        "invoice_date": "09/26/2020",
+        "total_amount": "$57483,07",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "10823698",
+        "invoice_date": "2020-09-26",
+        "total_amount": 668.0,
+        "currency": "USD",
+        "vendor_name": "Ltd"
+      },
+      "llm_used": false,
+      "processing_time": 8.699933052062988
+    },
+    {
+      "sample_id": 5,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "63665479",
+        "invoice_date": "02/12/2017",
+        "total_amount": "$ 176,00",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "63665479",
+        "invoice_date": "2017-02-12",
+        "total_amount": 176.0,
+        "currency": "USD",
+        "vendor_name": "Lowery LLC"
+      },
+      "llm_used": false,
+      "processing_time": 7.786956071853638
+    },
+    {
+      "sample_id": 6,
+      "accuracy": 0.6,
+      "matches": {
+        "invoice_id": false,
+        "invoice_date": false,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "70123184",
+        "invoice_date": "01/28/2016",
+        "total_amount": "$ 749,99",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "40378170",
+        "invoice_date": null,
+        "total_amount": 749.99,
+        "currency": "USD",
+        "vendor_name": "Kelly, Hernandez Vaughan"
+      },
+      "llm_used": false,
+      "processing_time": 9.569769859313965
+    },
+    {
+      "sample_id": 7,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "99763738",
+        "invoice_date": "06/14/2017",
+        "total_amount": "$403,25",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "99763738",
+        "invoice_date": "2017-06-14",
+        "total_amount": 403.25,
+        "currency": "USD",
+        "vendor_name": "Franklin, Alexander"
+      },
+      "llm_used": false,
+      "processing_time": 13.63245415687561
+    },
+    {
+      "sample_id": 8,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "65507091",
+        "invoice_date": "07/30/2014",
+        "total_amount": "$67572,13",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "65507091",
+        "invoice_date": "2014-07-30",
+        "total_amount": 572.13,
+        "currency": "USD",
+        "vendor_name": "Pacheco, Simmons and"
+      },
+      "llm_used": false,
+      "processing_time": 11.427119016647339
+    },
+    {
+      "sample_id": 9,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "28590433",
+        "invoice_date": "09/27/2016",
+        "total_amount": "$ 15804,54",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "28590433",
+        "invoice_date": "2016-09-27",
+        "total_amount": 960.0,
+        "currency": "USD",
+        "vendor_name": "White Group Inc"
+      },
+      "llm_used": false,
+      "processing_time": 14.93663215637207
+    },
+    {
+      "sample_id": 10,
+      "accuracy": 0.6,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": false,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "58805260",
+        "invoice_date": "03/07/2019",
+        "total_amount": "$6004,31",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "58805260",
+        "invoice_date": "2019-07-03",
+        "total_amount": 680.34,
+        "currency": "USD",
+        "vendor_name": "Pines"
+      },
+      "llm_used": false,
+      "processing_time": 12.112361192703247
+    },
+    {
+      "sample_id": 11,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "11489615",
+        "invoice_date": "07/06/2016",
+        "total_amount": "303,29",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "11489615",
+        "invoice_date": "2016-07-06",
+        "total_amount": 303.29,
+        "currency": "USD",
+        "vendor_name": "Fields and Sons"
+      },
+      "llm_used": false,
+      "processing_time": 11.449485063552856
+    },
+    {
+      "sample_id": 12,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "19537372",
+        "invoice_date": "07/28/2012",
+        "total_amount": "$6016,84",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "19537372",
+        "invoice_date": "2012-07-28",
+        "total_amount": 895.0,
+        "currency": "USD",
+        "vendor_name": "Richardson LLC"
+      },
+      "llm_used": false,
+      "processing_time": 11.012471914291382
+    },
+    {
+      "sample_id": 13,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": false
+      },
+      "expected": {
+        "invoice_id": "",
+        "invoice_date": "07/06/2019",
+        "total_amount": "",
+        "currency": "",
+        "vendor_name": "Jackson-Martinez 719 Reyes Mill Apt. 833 Joshuabury, NM 79134"
+      },
+      "extracted": {
+        "invoice_id": "87278875",
+        "invoice_date": "2019-07-06",
+        "total_amount": 75.61,
+        "currency": "USD",
+        "vendor_name": "Foster, Travis"
+      },
+      "llm_used": false,
+      "processing_time": 10.711458921432495
+    },
+    {
+      "sample_id": 14,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "81163184",
+        "invoice_date": "10/23/2017",
+        "total_amount": "$4,36",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "81163184",
+        "invoice_date": "2017-10-23",
+        "total_amount": 4.36,
+        "currency": "USD",
+        "vendor_name": "Kevin   Co"
+      },
+      "llm_used": false,
+      "processing_time": 11.634121894836426
+    },
+    {
+      "sample_id": 15,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "46301857",
+        "invoice_date": "04/08/2017",
+        "total_amount": "$65,29",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "46301857",
+        "invoice_date": "2017-04-08",
+        "total_amount": 65.29,
+        "currency": "USD",
+        "vendor_name": "Pearson Plaza"
+      },
+      "llm_used": false,
+      "processing_time": 11.752395868301392
+    },
+    {
+      "sample_id": 16,
+      "accuracy": 1.0,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "41389063",
+        "invoice_date": "03/17/2021",
+        "total_amount": "$ 16,14",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "41389063",
+        "invoice_date": "2021-03-17",
+        "total_amount": 16.14,
+        "currency": "USD",
+        "vendor_name": "Carpenter"
+      },
+      "llm_used": false,
+      "processing_time": 12.361780405044556
+    },
+    {
+      "sample_id": 17,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "27139567",
+        "invoice_date": "07/14/2017",
+        "total_amount": "48 517,63",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "27139567",
+        "invoice_date": "2017-07-14",
+        "total_amount": 783.6,
+        "currency": "USD",
+        "vendor_name": "Vargas, Miller"
+      },
+      "llm_used": false,
+      "processing_time": 11.753710985183716
+    },
+    {
+      "sample_id": 18,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "69941787",
+        "invoice_date": "03/03/2012",
+        "total_amount": "$35572,00",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "69941787",
+        "invoice_date": "2012-03-03",
+        "total_amount": 572.0,
+        "currency": "USD",
+        "vendor_name": "Hanson"
+      },
+      "llm_used": false,
+      "processing_time": 10.941328763961792
+    },
+    {
+      "sample_id": 19,
+      "accuracy": 0.8,
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "46405643",
+        "invoice_date": "05/16/2018",
+        "total_amount": "$3098,57",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "46405643",
+        "invoice_date": "2018-05-16",
+        "total_amount": 52843.0,
+        "currency": "USD",
+        "vendor_name": "Tyler"
+      },
+      "llm_used": false,
+      "processing_time": 12.342915773391724
+    }
+  ]
+}

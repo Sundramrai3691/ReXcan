@@ -1,0 +1,124 @@
+====================================================================================================
+COMPREHENSIVE INVOICE EXTRACTION ANALYSIS REPORT
+====================================================================================================
+
+Total Samples Analyzed: 3
+Overall Accuracy: 73.33%
+Average Processing Time: 9.72s
+
+====================================================================================================
+FIELD-LEVEL ACCURACY BREAKDOWN
+====================================================================================================
+
+Field                Accuracy     Correct    Missing    Incorrect  Total     
+----------------------------------------------------------------------------------------------------
+invoice_id                66.67%         2/3          0         1         3
+invoice_date             100.00%         3/3          0         0         3
+total_amount               0.00%         0/3          0         3         3
+currency                 100.00%         3/3          0         0         3
+vendor_name              100.00%         3/3          0         0         3
+
+====================================================================================================
+EXTRACTION METHOD USAGE
+====================================================================================================
+Heuristic-only: 3 (100.0%)
+LLM-assisted: 0 (0.0%)
+
+====================================================================================================
+DETAILED PER-SAMPLE ANALYSIS
+====================================================================================================
+
+--- Sample 1: ID=0 ---
+Overall Accuracy: 80.0%
+Processing Time: 8.77s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 40378170
+    Extracted: 40378170
+  invoice_date    ✓ MATCH
+    Expected: 10/15/2012
+    Extracted: 2012-10-15
+  total_amount    ✗ MISMATCH
+    Expected: $8,25
+    Extracted: 7.5
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Patel, Thompson and
+
+--- Sample 2: ID=1 ---
+Overall Accuracy: 80.0%
+Processing Time: 10.07s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 61356291
+    Extracted: 61356291
+  invoice_date    ✓ MATCH
+    Expected: 09/06/2012
+    Extracted: 2012-09-06
+  total_amount    ✗ MISMATCH
+    Expected: $ 212,09
+    Extracted: 192.81
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Chapman, and Green
+
+--- Sample 3: ID=2 ---
+Overall Accuracy: 60.0%
+Processing Time: 10.32s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✗ MISMATCH
+    Expected: 39280409
+    Extracted: 72057
+  invoice_date    ✓ MATCH
+    Expected: 07/06/2014
+    Extracted: 2014-07-06
+  total_amount    ✗ MISMATCH
+    Expected: $1767,34
+    Extracted: 106.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Castillo
+
+====================================================================================================
+MISSING & INCORRECT FIELDS ANALYSIS
+====================================================================================================
+
+Missing Fields (Expected but not extracted):
+
+Incorrect Fields (Extracted but wrong):
+  invoice_id          :   1/3   ( 33.3%)
+  total_amount        :   3/3   (100.0%)
+
+====================================================================================================
+SUMMARY & RECOMMENDATIONS
+====================================================================================================
+
+Strengths:
+  ✓ invoice_date: 100.0% accuracy
+  ✓ currency: 100.0% accuracy
+  ✓ vendor_name: 100.0% accuracy
+
+Areas Needing Improvement:
+  ✗ invoice_id: 66.7% accuracy
+    → Primary issue: Incorrect extraction (1 cases)
+  ✗ total_amount: 0.0% accuracy
+    → Primary issue: Incorrect extraction (3 cases)
+
+====================================================================================================
+✓ Detailed report saved to detailed_analysis_report.json
+====================================================================================================

@@ -1,0 +1,302 @@
+[
+  {
+    "sample_id": 0,
+    "extracted": {
+      "invoice_id": "40378170",
+      "invoice_date": "2012-10-15",
+      "total_amount": 8.25,
+      "amount_subtotal": 7.5,
+      "amount_tax": 1.0,
+      "currency": "USD",
+      "vendor_name": "Patel, Thompson and",
+      "vendor_id": "patel_thompson_and",
+      "dedupe_hash": "c085930f5f42d6d9608b56ec8952140bfa05ff8ce91359d1dd85fc819b646c3f",
+      "is_duplicate": false,
+      "arithmetic_mismatch": true,
+      "confidence_scores": {
+        "invoice_id": 0.85,
+        "invoice_date": 0.6799999999999999,
+        "total_amount": 0.4604,
+        "currency": 0.48,
+        "vendor_name": 0.6799999999999999
+      },
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_id",
+        "vendor_name",
+        "invoice_date",
+        "due_date",
+        "total_amount",
+        "currency",
+        "reasons"
+      ],
+      "needs_human_review": true
+    },
+    "comparison": {
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "40378170",
+        "invoice_date": "10/15/2012",
+        "total_amount": "$8,25",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "40378170",
+        "invoice_date": "2012-10-15",
+        "total_amount": 8.25,
+        "currency": "USD",
+        "vendor_name": "Patel, Thompson and"
+      },
+      "accuracy": 1.0
+    },
+    "accuracy": 1.0,
+    "processing_time": 0.6612391471862793
+  },
+  {
+    "sample_id": 1,
+    "extracted": {
+      "invoice_id": "61356291",
+      "invoice_date": "2012-09-06",
+      "total_amount": 212.09,
+      "amount_subtotal": 192.81,
+      "amount_tax": 12.0,
+      "currency": "USD",
+      "vendor_name": "Chapman, and Green",
+      "vendor_id": "chapman_and_green",
+      "dedupe_hash": "bac8fe3d471f3d7be41c2c302403a38c4a3b3428cc38a23a5efa2e284f7c5775",
+      "is_duplicate": false,
+      "arithmetic_mismatch": true,
+      "confidence_scores": {
+        "invoice_id": 0.865,
+        "invoice_date": 0.48,
+        "total_amount": 0.4604,
+        "currency": 0.48,
+        "vendor_name": 0.6799999999999999
+      },
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_id",
+        "vendor_name",
+        "invoice_date",
+        "due_date",
+        "total_amount",
+        "currency",
+        "reasons"
+      ],
+      "needs_human_review": true
+    },
+    "comparison": {
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "61356291",
+        "invoice_date": "09/06/2012",
+        "total_amount": "$ 212,09",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "61356291",
+        "invoice_date": "2012-09-06",
+        "total_amount": 212.09,
+        "currency": "USD",
+        "vendor_name": "Chapman, and Green"
+      },
+      "accuracy": 1.0
+    },
+    "accuracy": 1.0,
+    "processing_time": 0.7105040550231934
+  },
+  {
+    "sample_id": 2,
+    "extracted": {
+      "invoice_id": "72057",
+      "invoice_date": "2014-07-06",
+      "total_amount": 106.0,
+      "amount_subtotal": null,
+      "amount_tax": 29.99,
+      "currency": "USD",
+      "vendor_name": "Castillo",
+      "vendor_id": "castillo",
+      "dedupe_hash": "ac55ad63dd2e286267498e9d561c4a82d941aaf5931657d74ceeb3fd89d16b55",
+      "is_duplicate": false,
+      "arithmetic_mismatch": false,
+      "confidence_scores": {
+        "invoice_id": 0.85,
+        "invoice_date": 0.6799999999999999,
+        "total_amount": 0.6604,
+        "currency": 0.48,
+        "vendor_name": 0.6799999999999999
+      },
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_id",
+        "vendor_name",
+        "invoice_date",
+        "due_date",
+        "total_amount",
+        "currency",
+        "reasons"
+      ],
+      "needs_human_review": false
+    },
+    "comparison": {
+      "matches": {
+        "invoice_id": false,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "39280409",
+        "invoice_date": "07/06/2014",
+        "total_amount": "$1767,34",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "72057",
+        "invoice_date": "2014-07-06",
+        "total_amount": 106.0,
+        "currency": "USD",
+        "vendor_name": "Castillo"
+      },
+      "accuracy": 0.6
+    },
+    "accuracy": 0.6,
+    "processing_time": 0.7371079921722412
+  },
+  {
+    "sample_id": 3,
+    "extracted": {
+      "invoice_id": "27301261",
+      "invoice_date": "2012-10-09",
+      "total_amount": 544.46,
+      "amount_subtotal": 494.96,
+      "amount_tax": 45.0,
+      "currency": "USD",
+      "vendor_name": "Plains LLC",
+      "vendor_id": "plains_llc",
+      "dedupe_hash": "d2ce4db51e4a2a11a569a1af36db23e0c4f4672ef0d61ef6d124f0d509daa7e7",
+      "is_duplicate": false,
+      "arithmetic_mismatch": true,
+      "confidence_scores": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.48,
+        "total_amount": 0.4604,
+        "currency": 0.48,
+        "vendor_name": 0.6799999999999999
+      },
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_id",
+        "vendor_name",
+        "invoice_date",
+        "due_date",
+        "total_amount",
+        "currency",
+        "reasons"
+      ],
+      "needs_human_review": true
+    },
+    "comparison": {
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": true,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "27301261",
+        "invoice_date": "10/09/2012",
+        "total_amount": "$ 544,46",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "27301261",
+        "invoice_date": "2012-10-09",
+        "total_amount": 544.46,
+        "currency": "USD",
+        "vendor_name": "Plains LLC"
+      },
+      "accuracy": 1.0
+    },
+    "accuracy": 1.0,
+    "processing_time": 0.7417652606964111
+  },
+  {
+    "sample_id": 4,
+    "extracted": {
+      "invoice_id": "10823698",
+      "invoice_date": "2020-09-26",
+      "total_amount": 668.0,
+      "amount_subtotal": 400.0,
+      "amount_tax": 240.0,
+      "currency": "USD",
+      "vendor_name": "Ltd",
+      "vendor_id": "ltd",
+      "dedupe_hash": "be34f6efefaf4bf87c714c1f41c5b6cf4ff8bca3e780e4efc5cd907d1789e8ce",
+      "is_duplicate": false,
+      "arithmetic_mismatch": true,
+      "confidence_scores": {
+        "invoice_id": 0.85,
+        "invoice_date": 0.6799999999999999,
+        "total_amount": 0.6604,
+        "currency": 0.48,
+        "vendor_name": 0.6799999999999999
+      },
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_id",
+        "vendor_name",
+        "invoice_date",
+        "due_date",
+        "total_amount",
+        "currency",
+        "reasons"
+      ],
+      "needs_human_review": false
+    },
+    "comparison": {
+      "matches": {
+        "invoice_id": true,
+        "invoice_date": true,
+        "total_amount": false,
+        "currency": true,
+        "vendor_name": true
+      },
+      "expected": {
+        "invoice_id": "10823698",
+        "invoice_date": "09/26/2020",
+        "total_amount": "$57483,07",
+        "currency": "",
+        "vendor_name": ""
+      },
+      "extracted": {
+        "invoice_id": "10823698",
+        "invoice_date": "2020-09-26",
+        "total_amount": 668.0,
+        "currency": "USD",
+        "vendor_name": "Ltd"
+      },
+      "accuracy": 0.8
+    },
+    "accuracy": 0.8,
+    "processing_time": 0.760723352432251
+  }
+]

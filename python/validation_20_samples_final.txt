@@ -1,0 +1,215 @@
+Loading Hugging Face dataset...
+✓ Loaded dataset with 2043 samples
+
+Inspecting first sample structure...
+Sample type: <class 'dict'>
+Sample keys: ['image', 'id', 'parsed_data', 'raw_data']
+  image: <class 'PIL.JpegImagePlugin.JpegImageFile'> - PIL.Image
+  id: <class 'str'> - 0
+  parsed_data: <class 'str'> - {"xml": "", "json": "{'header': {'invoice_no': '40378170', 'invoice_date': '10/15/2012', 'seller': '
+  raw_data: <class 'str'> - {"ocr_words": "['Invoice no: 40378170', 'Date of issue:', '10/15/2012', 'Seller:', 'Client:', 'Patel
+
+Processing 20 samples...
+
+[1/20] Processing sample 0...
+    → Image file detected, using OCR... ✓ (92 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.6s
+  Accuracy: 80.00%
+  Time: 16.67s
+  LLM Used: True
+  Matches: 4/5
+
+[2/20] Processing sample 1...
+    → Image file detected, using OCR... ✓ (137 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 14.40s
+  LLM Used: True
+  Matches: 4/5
+
+[3/20] Processing sample 2...
+    → Image file detected, using OCR... ✓ (169 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 60.00%
+  Time: 13.19s
+  LLM Used: True
+  Matches: 3/5
+
+[4/20] Processing sample 3...
+    → Image file detected, using OCR... ✓ (181 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+      ⚠️  LLM total (27301261.0) matches invoice ID (27301261), using heuristic
+  Accuracy: 80.00%
+  Time: 13.87s
+  LLM Used: True
+  Matches: 4/5
+
+[5/20] Processing sample 4...
+    → Image file detected, using OCR... ✓ (194 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 12.58s
+  LLM Used: True
+  Matches: 4/5
+
+[6/20] Processing sample 5...
+    → Image file detected, using OCR... ✓ (87 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+      ⚠️  LLM total (63665479.0) matches invoice ID (63665479), using heuristic
+  Accuracy: 80.00%
+  Time: 10.18s
+  LLM Used: True
+  Matches: 4/5
+
+[7/20] Processing sample 6...
+    → Image file detected, using OCR... ✓ (197 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 40.00%
+  Time: 10.45s
+  LLM Used: True
+  Matches: 2/5
+
+[8/20] Processing sample 7...
+    → Image file detected, using OCR... ✓ (130 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 9.82s
+  LLM Used: True
+  Matches: 4/5
+
+[9/20] Processing sample 8...
+    → Image file detected, using OCR... ✓ (193 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+      ⚠️  LLM total (65507091.0) matches invoice ID (65507091), using heuristic
+  Accuracy: 80.00%
+  Time: 12.00s
+  LLM Used: True
+  Matches: 4/5
+
+[10/20] Processing sample 9...
+    → Image file detected, using OCR... ✓ (213 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 11.70s
+  LLM Used: True
+  Matches: 4/5
+
+[11/20] Processing sample 10...
+    → Image file detected, using OCR... ✓ (115 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 11.96s
+  LLM Used: True
+  Matches: 4/5
+
+[12/20] Processing sample 11...
+    → Image file detected, using OCR... ✓ (155 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+      ⚠️  LLM total (11489615.0) matches invoice ID (11489615), using heuristic
+  Accuracy: 80.00%
+  Time: 11.19s
+  LLM Used: True
+  Matches: 4/5
+
+[13/20] Processing sample 12...
+    → Image file detected, using OCR... ✓ (218 blocks)
+    → Calling LLM for 2 fields: invoice_date, vendor_name
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 10.89s
+  LLM Used: True
+  Matches: 4/5
+
+[14/20] Processing sample 13...
+    → Image file detected, using OCR... ✓ (132 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 11.15s
+  LLM Used: True
+  Matches: 4/5
+
+[15/20] Processing sample 14...
+    → Image file detected, using OCR... ✓ (83 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 9.47s
+  LLM Used: True
+  Matches: 4/5
+
+[16/20] Processing sample 15...
+    → Image file detected, using OCR... ✓ (88 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 7.74s
+  LLM Used: True
+  Matches: 4/5
+
+[17/20] Processing sample 16...
+    → Image file detected, using OCR... ✓ (72 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 7.63s
+  LLM Used: True
+  Matches: 4/5
+
+[18/20] Processing sample 17...
+    → Using cached OCR (180 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  → Using cached LLM result
+  Accuracy: 80.00%
+  Time: 0.72s
+  LLM Used: True
+  Matches: 4/5
+
+[19/20] Processing sample 18...
+    → Using cached OCR (118 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  → Using cached LLM result
+  Accuracy: 80.00%
+  Time: 0.66s
+  LLM Used: True
+  Matches: 4/5
+
+[20/20] Processing sample 19...
+    → Using cached OCR (182 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  → Using cached LLM result
+  Accuracy: 80.00%
+  Time: 0.72s
+  LLM Used: True
+  Matches: 4/5
+
+============================================================
+VALIDATION SUMMARY
+============================================================
+Total Samples Processed: 20
+Successful Extractions: 20
+Failed Extractions: 0
+Average Accuracy: 77.00%
+LLM Usage Rate: 100.00%
+Samples with LLM: 20/20
+
+Field-level Accuracy:
+  invoice_id          : 90.00% (18/20)
+  invoice_date        : 95.00% (19/20)
+  total_amount        : 5.00% (1/20)
+  currency            : 100.00% (20/20)
+  vendor_name         : 95.00% (19/20)
+
+Results saved to validation_results.json

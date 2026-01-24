@@ -1,0 +1,1479 @@
+{
+  "summary": {
+    "total_samples": 20,
+    "field_accuracies": {
+      "invoice_id": 0.0,
+      "invoice_date": 0.0,
+      "total_amount": 0.0,
+      "currency": 0.0,
+      "vendor_name": 0.0
+    },
+    "overall_accuracy": 0.0,
+    "llm_usage_rate": 0.15,
+    "method_counts": {
+      "heuristic": 95,
+      "llm": 5
+    },
+    "avg_timings": {
+      "ocr": 2.201200234889984,
+      "llm": 0.7433451016743978
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "0",
+      "extracted": {
+        "invoice_id": "40378170",
+        "invoice_date": "2012-10-15",
+        "total_amount": 7.5,
+        "currency": "USD",
+        "vendor_name": "s   Wine   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 40378170",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 7.5",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "40378170",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2012-10-15",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 7.5,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "s   Wine   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.002307891845703125
+      },
+      "num_blocks": 92
+    },
+    {
+      "sample_id": "1",
+      "extracted": {
+        "invoice_id": "61356291",
+        "invoice_date": "2012-09-06",
+        "total_amount": 192.81,
+        "currency": "USD",
+        "vendor_name": "Replacement   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.865,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 61356291",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 192.81",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "61356291",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2012-09-06",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 192.81,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Replacement   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.00566864013671875
+      },
+      "num_blocks": 137
+    },
+    {
+      "sample_id": "10",
+      "extracted": {
+        "invoice_id": "39280409",
+        "invoice_date": "2014-07-06",
+        "total_amount": 606.67,
+        "currency": "USD",
+        "vendor_name": "Bohemian   Garden   Yoga   Mat\nIndian   Kilim   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.865,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 39280409",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 606.67",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "39280409",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2014-07-06",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 606.67,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Bohemian   Garden   Yoga   Mat\nIndian   Kilim   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.010496139526367188
+      },
+      "num_blocks": 169
+    },
+    {
+      "sample_id": "100",
+      "extracted": {
+        "invoice_id": "27301261",
+        "invoice_date": "2012-10-09",
+        "total_amount": 494.96,
+        "currency": "USD",
+        "vendor_name": "Williams   LLC"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 27301261",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 494.96",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "27301261",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2012-10-09",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 494.96,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Williams   LLC",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.008498907089233398
+      },
+      "num_blocks": 181
+    },
+    {
+      "sample_id": "101",
+      "extracted": {
+        "invoice_id": "10823698",
+        "invoice_date": "2020-09-26",
+        "total_amount": 257.34,
+        "currency": "USD",
+        "vendor_name": "Hernandez   Ltd"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 10823698",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 257.34",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "10823698",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2020-09-26",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 257.34,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Hernandez   Ltd",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.003153085708618164
+      },
+      "num_blocks": 194
+    },
+    {
+      "sample_id": "102",
+      "extracted": {
+        "invoice_id": "63665479",
+        "invoice_date": "2017-02-12",
+        "total_amount": 160.0,
+        "currency": "USD",
+        "vendor_name": "Lowery   LLC"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 63665479",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 160.0",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "63665479",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2017-02-12",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 160.0,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Lowery   LLC",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0017440319061279297
+      },
+      "num_blocks": 87
+    },
+    {
+      "sample_id": "103",
+      "extracted": {
+        "invoice_id": "70123184",
+        "invoice_date": "2016-01-28",
+        "total_amount": 681.81,
+        "currency": "USD",
+        "vendor_name": "Kelly,   Hernandez   and   Vaughan   Cooley   Ltd"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.865,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 70123184",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 681.81",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "70123184",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2016-01-28",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 681.81,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Kelly,   Hernandez   and   Vaughan   Cooley   Ltd",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0035500526428222656
+      },
+      "num_blocks": 197
+    },
+    {
+      "sample_id": "104",
+      "extracted": {
+        "invoice_id": "99763738",
+        "invoice_date": "2017-06-14",
+        "total_amount": 366.59,
+        "currency": "USD",
+        "vendor_name": "Granger   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 99763738",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 366.59",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "99763738",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2017-06-14",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 366.59,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Granger   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.003715038299560547
+      },
+      "num_blocks": 130
+    },
+    {
+      "sample_id": "105",
+      "extracted": {
+        "invoice_id": "65507091",
+        "invoice_date": "2014-07-30",
+        "total_amount": 429.21,
+        "currency": "USD",
+        "vendor_name": "Pacheco,   Simmons   and   Coleman   Hensley   LLC"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 65507091",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 429.21",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "65507091",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2014-07-30",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 429.21,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Pacheco,   Simmons   and   Coleman   Hensley   LLC",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.003592967987060547
+      },
+      "num_blocks": 193
+    },
+    {
+      "sample_id": "106",
+      "extracted": {
+        "invoice_id": "28590433",
+        "invoice_date": "2016-09-27",
+        "total_amount": 367.76,
+        "currency": "USD",
+        "vendor_name": "White   Group   Hoffman   Inc"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.865,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 28590433",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 367.76",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "28590433",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2016-09-27",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 367.76,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "White   Group   Hoffman   Inc",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.004577159881591797
+      },
+      "num_blocks": 213
+    },
+    {
+      "sample_id": "107",
+      "extracted": {
+        "invoice_id": "58805260",
+        "invoice_date": "2019-03-07",
+        "total_amount": 458.46,
+        "currency": "USD",
+        "vendor_name": "Core   Gaming   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 58805260",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 458.46",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "58805260",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2019-03-07",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 458.46,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Core   Gaming   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0020208358764648438
+      },
+      "num_blocks": 115
+    },
+    {
+      "sample_id": "108",
+      "extracted": {
+        "invoice_id": "11489615",
+        "invoice_date": "2016-07-06",
+        "total_amount": 275.72,
+        "currency": "USD",
+        "vendor_name": "Random   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 11489615",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 275.72",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "11489615",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2016-07-06",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 275.72,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Random   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0024652481079101562
+      },
+      "num_blocks": 155
+    },
+    {
+      "sample_id": "109",
+      "extracted": {
+        "invoice_id": "19537372",
+        "invoice_date": "2012-07-28",
+        "total_amount": 469.85,
+        "currency": "USD",
+        "vendor_name": "Richardson   LLC"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.865,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 19537372",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 469.85",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "19537372",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2012-07-28",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 469.85,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Richardson   LLC",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0030760765075683594
+      },
+      "num_blocks": 218
+    },
+    {
+      "sample_id": "11",
+      "extracted": {
+        "invoice_id": "87278875",
+        "invoice_date": "2019-07-06",
+        "total_amount": 68.74,
+        "currency": "USD",
+        "vendor_name": "Pink   Pig   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 87278875",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 68.74",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "87278875",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2019-07-06",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 68.74,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Pink   Pig   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.004580020904541016
+      },
+      "num_blocks": 132
+    },
+    {
+      "sample_id": "110",
+      "extracted": {
+        "invoice_id": "81163184",
+        "invoice_date": "2017-10-23",
+        "total_amount": 3.96,
+        "currency": "USD",
+        "vendor_name": "Kevin   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 81163184",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 3.96",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "81163184",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2017-10-23",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 3.96,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Kevin   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0016558170318603516
+      },
+      "num_blocks": 83
+    },
+    {
+      "sample_id": "111",
+      "extracted": {
+        "invoice_id": "46301857",
+        "invoice_date": "2017-04-08",
+        "total_amount": 59.35,
+        "currency": "USD",
+        "vendor_name": "Invoice 46301857"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.75
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 46301857",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 59.35",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company name in top-left region"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "46301857",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2017-04-08",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 59.35,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Invoice 46301857",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0016887187957763672
+      },
+      "num_blocks": 88
+    },
+    {
+      "sample_id": "112",
+      "extracted": {
+        "invoice_id": "41389063",
+        "invoice_date": "2021-03-17",
+        "total_amount": 14.67,
+        "currency": "USD",
+        "vendor_name": "ter,   Robinson   and   Jackson   Davis,   Li   and   Co"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "heuristic"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 41389063",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 14.67",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "41389063",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2021-03-17",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 14.67,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "ter,   Robinson   and   Jackson   Davis,   Li   and   Co",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": false,
+      "llm_fields": [],
+      "timings": {
+        "ocr": 0.0037729740142822266
+      },
+      "num_blocks": 72
+    },
+    {
+      "sample_id": "113",
+      "extracted": {
+        "invoice_id": "27139567",
+        "invoice_date": "2017-07-14",
+        "total_amount": 5.0,
+        "currency": "USD",
+        "vendor_name": "Vargas, Miller"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "heuristic",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "llm"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 27139567",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed_label: 5.0",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "27139567",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2017-07-14",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 5.0,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Vargas, Miller",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_date",
+        "total_amount",
+        "vendor_name"
+      ],
+      "timings": {
+        "ocr": 14.176213026046753,
+        "llm": 1.0209290981292725
+      },
+      "num_blocks": 180
+    },
+    {
+      "sample_id": "114",
+      "extracted": {
+        "invoice_id": "69941787",
+        "invoice_date": "2012-03-03",
+        "total_amount": 5.0,
+        "currency": "USD",
+        "vendor_name": "Hanson"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "llm",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "llm"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 69941787",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed_label: 5.0",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "69941787",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2012-03-03",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 5.0,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Hanson",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_date",
+        "total_amount",
+        "vendor_name"
+      ],
+      "timings": {
+        "ocr": 12.358028888702393,
+        "llm": 0.6165781021118164
+      },
+      "num_blocks": 118
+    },
+    {
+      "sample_id": "115",
+      "extracted": {
+        "invoice_id": "46405643",
+        "invoice_date": "2018-05-16",
+        "total_amount": 816.88,
+        "currency": "USD",
+        "vendor_name": "Tyler"
+      },
+      "methods": {
+        "invoice_id": "heuristic",
+        "invoice_date": "llm",
+        "total_amount": "heuristic",
+        "currency": "heuristic",
+        "vendor_name": "llm"
+      },
+      "confidences": {
+        "invoice_id": 0.8719999999999999,
+        "invoice_date": 0.75,
+        "total_amount": 0.62,
+        "currency": 0.75,
+        "vendor_name": 0.8
+      },
+      "reasons": {
+        "invoice_id": "strict_label: 46405643",
+        "invoice_date": "Found date in document",
+        "total_amount": "relaxed: 816.88",
+        "currency": "Found currency indicator: $",
+        "vendor_name": "Found company pattern in text"
+      },
+      "comparison": {
+        "invoice_id": {
+          "extracted": "46405643",
+          "expected": "",
+          "match": false
+        },
+        "invoice_date": {
+          "extracted": "2018-05-16",
+          "expected": "",
+          "match": false
+        },
+        "total_amount": {
+          "extracted": 816.88,
+          "expected": "",
+          "match": false
+        },
+        "currency": {
+          "extracted": "USD",
+          "expected": "",
+          "match": false
+        },
+        "vendor_name": {
+          "extracted": "Tyler",
+          "expected": "",
+          "match": false
+        }
+      },
+      "field_accuracy": {
+        "invoice_id": 0.0,
+        "invoice_date": 0.0,
+        "total_amount": 0.0,
+        "currency": 0.0,
+        "vendor_name": 0.0
+      },
+      "overall_accuracy": 0.0,
+      "llm_used": true,
+      "llm_fields": [
+        "invoice_date",
+        "total_amount",
+        "vendor_name"
+      ],
+      "timings": {
+        "ocr": 17.42319917678833,
+        "llm": 0.5925281047821045
+      },
+      "num_blocks": 182
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+canonical_id,name,aliases,tax_id
+acme_corp,ACME Corporation,ACME Corp|Acme Corp|ACME Inc,TAX123456
+microsoft,Microsoft Corporation,Microsoft Corp|MSFT|Microsoft Inc,TAX789012
+amazon,Amazon.com Inc,Amazon|Amazon.com|AMZN,TAX345678
+test_vendor_corp,Test Vendor Corp,Test Vendor Corp,

@@ -1,0 +1,499 @@
+====================================================================================================
+COMPREHENSIVE INVOICE EXTRACTION ANALYSIS REPORT
+====================================================================================================
+
+Total Samples Analyzed: 20
+Overall Accuracy: 77.00%
+Average Processing Time: 9.85s
+
+====================================================================================================
+FIELD-LEVEL ACCURACY BREAKDOWN
+====================================================================================================
+
+Field                Accuracy     Correct    Missing    Incorrect  Total     
+----------------------------------------------------------------------------------------------------
+invoice_id                90.00%        18/20         0         2        20
+invoice_date              95.00%        19/20         1         0        20
+total_amount               5.00%         1/20         0        19        20
+currency                 100.00%        20/20         0         0        20
+vendor_name               95.00%        19/20         0         1        20
+
+====================================================================================================
+EXTRACTION METHOD USAGE
+====================================================================================================
+Heuristic-only: 20 (100.0%)
+LLM-assisted: 0 (0.0%)
+
+====================================================================================================
+DETAILED PER-SAMPLE ANALYSIS
+====================================================================================================
+
+--- Sample 1: ID=0 ---
+Overall Accuracy: 80.0%
+Processing Time: 16.67s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 40378170
+    Extracted: 40378170
+  invoice_date    ✓ MATCH
+    Expected: 10/15/2012
+    Extracted: 2012-10-15
+  total_amount    ✗ MISMATCH
+    Expected: $8,25
+    Extracted: 7.5
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Patel, Thompson and
+
+--- Sample 2: ID=1 ---
+Overall Accuracy: 80.0%
+Processing Time: 14.40s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 61356291
+    Extracted: 61356291
+  invoice_date    ✓ MATCH
+    Expected: 09/06/2012
+    Extracted: 2012-09-06
+  total_amount    ✗ MISMATCH
+    Expected: $ 212,09
+    Extracted: 192.81
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Chapman, and Green
+
+--- Sample 3: ID=2 ---
+Overall Accuracy: 60.0%
+Processing Time: 13.19s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✗ MISMATCH
+    Expected: 39280409
+    Extracted: 72057
+  invoice_date    ✓ MATCH
+    Expected: 07/06/2014
+    Extracted: 2014-07-06
+  total_amount    ✗ MISMATCH
+    Expected: $1767,34
+    Extracted: 106.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Castillo
+
+--- Sample 4: ID=3 ---
+Overall Accuracy: 80.0%
+Processing Time: 13.87s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 27301261
+    Extracted: 27301261
+  invoice_date    ✓ MATCH
+    Expected: 10/09/2012
+    Extracted: 2012-10-09
+  total_amount    ✗ MISMATCH
+    Expected: $ 544,46
+    Extracted: 494.96
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Plains LLC
+
+--- Sample 5: ID=4 ---
+Overall Accuracy: 80.0%
+Processing Time: 12.58s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 10823698
+    Extracted: 10823698
+  invoice_date    ✓ MATCH
+    Expected: 09/26/2020
+    Extracted: 2020-09-26
+  total_amount    ✗ MISMATCH
+    Expected: $57483,07
+    Extracted: 668.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Ltd
+
+--- Sample 6: ID=5 ---
+Overall Accuracy: 80.0%
+Processing Time: 10.18s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 63665479
+    Extracted: 63665479
+  invoice_date    ✓ MATCH
+    Expected: 02/12/2017
+    Extracted: 2017-02-12
+  total_amount    ✗ MISMATCH
+    Expected: $ 176,00
+    Extracted: 16.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Lowery LLC
+
+--- Sample 7: ID=6 ---
+Overall Accuracy: 40.0%
+Processing Time: 10.45s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✗ MISMATCH
+    Expected: 70123184
+    Extracted: 40378170
+  invoice_date    ✗ MISMATCH
+    Expected: 01/28/2016
+    Extracted: None
+  total_amount    ✗ MISMATCH
+    Expected: $ 749,99
+    Extracted: 68.18
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Kelly, Hernandez Vaughan
+
+--- Sample 8: ID=7 ---
+Overall Accuracy: 80.0%
+Processing Time: 9.82s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 99763738
+    Extracted: 99763738
+  invoice_date    ✓ MATCH
+    Expected: 06/14/2017
+    Extracted: 2017-06-14
+  total_amount    ✗ MISMATCH
+    Expected: $403,25
+    Extracted: 366.59
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Franklin, Alexander
+
+--- Sample 9: ID=8 ---
+Overall Accuracy: 80.0%
+Processing Time: 12.00s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 65507091
+    Extracted: 65507091
+  invoice_date    ✓ MATCH
+    Expected: 07/30/2014
+    Extracted: 2014-07-30
+  total_amount    ✗ MISMATCH
+    Expected: $67572,13
+    Extracted: 6.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Pacheco, Simmons and
+
+--- Sample 10: ID=9 ---
+Overall Accuracy: 80.0%
+Processing Time: 11.70s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 28590433
+    Extracted: 28590433
+  invoice_date    ✓ MATCH
+    Expected: 09/27/2016
+    Extracted: 2016-09-27
+  total_amount    ✗ MISMATCH
+    Expected: $ 15804,54
+    Extracted: 367.76
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: White Group Inc
+
+--- Sample 11: ID=10 ---
+Overall Accuracy: 80.0%
+Processing Time: 11.96s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 58805260
+    Extracted: 58805260
+  invoice_date    ✓ MATCH
+    Expected: 03/07/2019
+    Extracted: 2019-03-07
+  total_amount    ✗ MISMATCH
+    Expected: $6004,31
+    Extracted: 5.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Pines
+
+--- Sample 12: ID=11 ---
+Overall Accuracy: 80.0%
+Processing Time: 11.19s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 11489615
+    Extracted: 11489615
+  invoice_date    ✓ MATCH
+    Expected: 07/06/2016
+    Extracted: 2016-07-06
+  total_amount    ✗ MISMATCH
+    Expected: 303,29
+    Extracted: 275.72
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Fields and Sons
+
+--- Sample 13: ID=12 ---
+Overall Accuracy: 80.0%
+Processing Time: 10.89s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 19537372
+    Extracted: 19537372
+  invoice_date    ✓ MATCH
+    Expected: 07/28/2012
+    Extracted: 2012-07-28
+  total_amount    ✗ MISMATCH
+    Expected: $6016,84
+    Extracted: 5.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Richardson LLC
+
+--- Sample 14: ID=13 ---
+Overall Accuracy: 80.0%
+Processing Time: 11.15s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 
+    Extracted: 87278875
+  invoice_date    ✓ MATCH
+    Expected: 07/06/2019
+    Extracted: 2019-07-06
+  total_amount    ✓ MATCH
+    Expected: 
+    Extracted: 68.74
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✗ MISMATCH
+    Expected: Jackson-Martinez 719 Reyes Mill Apt. 833 Joshuabury, NM 7913
+    Extracted: Foster, Travis
+
+--- Sample 15: ID=14 ---
+Overall Accuracy: 80.0%
+Processing Time: 9.47s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 81163184
+    Extracted: 81163184
+  invoice_date    ✓ MATCH
+    Expected: 10/23/2017
+    Extracted: 2017-10-23
+  total_amount    ✗ MISMATCH
+    Expected: $4,36
+    Extracted: 3.96
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Kevin   Co
+
+--- Sample 16: ID=15 ---
+Overall Accuracy: 80.0%
+Processing Time: 7.74s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 46301857
+    Extracted: 46301857
+  invoice_date    ✓ MATCH
+    Expected: 04/08/2017
+    Extracted: 2017-04-08
+  total_amount    ✗ MISMATCH
+    Expected: $65,29
+    Extracted: 59.35
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Pearson Plaza
+
+--- Sample 17: ID=16 ---
+Overall Accuracy: 80.0%
+Processing Time: 7.63s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 41389063
+    Extracted: 41389063
+  invoice_date    ✓ MATCH
+    Expected: 03/17/2021
+    Extracted: 2021-03-17
+  total_amount    ✗ MISMATCH
+    Expected: $ 16,14
+    Extracted: 14.67
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Carpenter
+
+--- Sample 18: ID=17 ---
+Overall Accuracy: 80.0%
+Processing Time: 0.72s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 27139567
+    Extracted: 27139567
+  invoice_date    ✓ MATCH
+    Expected: 07/14/2017
+    Extracted: 2017-07-14
+  total_amount    ✗ MISMATCH
+    Expected: 48 517,63
+    Extracted: 5.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Vargas, Miller
+
+--- Sample 19: ID=18 ---
+Overall Accuracy: 80.0%
+Processing Time: 0.66s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 69941787
+    Extracted: 69941787
+  invoice_date    ✓ MATCH
+    Expected: 03/03/2012
+    Extracted: 2012-03-03
+  total_amount    ✗ MISMATCH
+    Expected: $35572,00
+    Extracted: 5.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Hanson
+
+--- Sample 20: ID=19 ---
+Overall Accuracy: 80.0%
+Processing Time: 0.72s
+LLM Used: No
+
+Field-by-Field Breakdown:
+  invoice_id      ✓ MATCH
+    Expected: 46405643
+    Extracted: 46405643
+  invoice_date    ✓ MATCH
+    Expected: 05/16/2018
+    Extracted: 2018-05-16
+  total_amount    ✗ MISMATCH
+    Expected: $3098,57
+    Extracted: 52843.0
+  currency        ✓ MATCH
+    Expected: 
+    Extracted: USD
+  vendor_name     ✓ MATCH
+    Expected: 
+    Extracted: Tyler
+
+====================================================================================================
+MISSING & INCORRECT FIELDS ANALYSIS
+====================================================================================================
+
+Missing Fields (Expected but not extracted):
+  invoice_date        :   1/20  (  5.0%)
+
+Incorrect Fields (Extracted but wrong):
+  invoice_id          :   2/20  ( 10.0%)
+  total_amount        :  19/20  ( 95.0%)
+  vendor_name         :   1/20  (  5.0%)
+
+====================================================================================================
+SUMMARY & RECOMMENDATIONS
+====================================================================================================
+
+Strengths:
+  ✓ invoice_id: 90.0% accuracy
+  ✓ invoice_date: 95.0% accuracy
+  ✓ currency: 100.0% accuracy
+  ✓ vendor_name: 95.0% accuracy
+
+Areas Needing Improvement:
+  ✗ total_amount: 5.0% accuracy
+    → Primary issue: Incorrect extraction (19 cases)
+
+====================================================================================================
+✓ Detailed report saved to detailed_analysis_report.json
+====================================================================================================

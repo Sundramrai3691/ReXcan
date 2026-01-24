@@ -1,0 +1,331 @@
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+================================================================================
+COMPREHENSIVE INVOICE EXTRACTION ANALYSIS
+================================================================================
+
+Loading Hugging Face dataset...
+✓ Loaded dataset with 2043 samples
+
+[1/20] Processing sample 0...
+    → Using cached OCR (92 blocks)
+    → OCR: 92 blocks in 0.01s
+    ✗ Error: name 'block_norms' is not defined
+
+[2/20] Processing sample 1...
+    → Using cached OCR (137 blocks)
+    → OCR: 137 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[3/20] Processing sample 10...
+    → Using cached OCR (169 blocks)
+    → OCR: 169 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[4/20] Processing sample 100...
+    → Using cached OCR (181 blocks)
+    → OCR: 181 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[5/20] Processing sample 101...
+    → Using cached OCR (194 blocks)
+    → OCR: 194 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[6/20] Processing sample 102...
+    → Using cached OCR (87 blocks)
+    → OCR: 87 blocks in 0.02s
+    ✗ Error: name 'block_norms' is not defined
+
+[7/20] Processing sample 103...
+    → Using cached OCR (197 blocks)
+    → OCR: 197 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[8/20] Processing sample 104...
+    → Using cached OCR (130 blocks)
+    → OCR: 130 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[9/20] Processing sample 105...
+    → Using cached OCR (193 blocks)
+    → OCR: 193 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[10/20] Processing sample 106...
+    → Using cached OCR (213 blocks)
+    → OCR: 213 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[11/20] Processing sample 107...
+    → Using cached OCR (115 blocks)
+    → OCR: 115 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[12/20] Processing sample 108...
+    → Using cached OCR (155 blocks)
+    → OCR: 155 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[13/20] Processing sample 109...
+    → Using cached OCR (218 blocks)
+    → OCR: 218 blocks in 0.00s
+    ✗ Error: name 'block_norms' is not defined
+
+[14/20] Processing sample 11...
+    → Image file detected, using OCR...Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+ ✓ (132 blocks)
+    → OCR: 132 blocks in 14.75s
+    ✗ Error: name 'block_norms' is not defined
+
+[15/20] Processing sample 110...
+    → Image file detected, using OCR...Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+ ✓ (83 blocks)
+    → OCR: 83 blocks in 14.57s
+    ✗ Error: name 'block_norms' is not defined
+
+[16/20] Processing sample 111...
+    → Image file detected, using OCR...Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+ ✓ (88 blocks)
+    → OCR: 88 blocks in 14.14s
+    ✗ Error: name 'block_norms' is not defined
+
+[17/20] Processing sample 112...
+    → Image file detected, using OCR...Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+ ✓ (72 blocks)
+    → OCR: 72 blocks in 12.32s
+    ✗ Error: name 'block_norms' is not defined
+
+[18/20] Processing sample 113...
+    → Image file detected, using OCR...Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+ ✓ (180 blocks)
+    → OCR: 180 blocks in 14.35s
+    ✗ Error: name 'block_norms' is not defined
+
+[19/20] Processing sample 114...
+    → Image file detected, using OCR...Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+ ✓ (118 blocks)
+    → OCR: 118 blocks in 13.96s
+    ✗ Error: name 'block_norms' is not defined
+
+[20/20] Processing sample 115...
+    → Image file detected, using OCR...Traceback (most recent call last):
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 276, in main
+    result = analyze_sample(sample, i, llm_router, vendor_canon)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/analyze_samples.py", line 134, in analyze_sample
+    inv_id, inv_conf, inv_reason = extract_invoice_id(blocks)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shauryaagrawal/Desktop/ReXcan/python/app/heuristics.py", line 172, in extract_invoice_id
+    nb = find_candidate_near(lb, blocks, prefer_right=True, max_px=800)
+            ^^^^^^^^^^^
+NameError: name 'block_norms' is not defined
+ ✓ (182 blocks)
+    → OCR: 182 blocks in 17.67s
+    ✗ Error: name 'block_norms' is not defined
+
+================================================================================
+AGGREGATE METRICS
+================================================================================
+No samples processed successfully!

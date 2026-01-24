@@ -1,0 +1,235 @@
+Loading Hugging Face dataset...
+✓ Loaded dataset with 2043 samples
+
+Inspecting first sample structure...
+Sample type: <class 'dict'>
+Sample keys: ['image', 'id', 'parsed_data', 'raw_data']
+  image: <class 'PIL.JpegImagePlugin.JpegImageFile'> - PIL.Image
+  id: <class 'str'> - 0
+  parsed_data: <class 'str'> - {"xml": "", "json": "{'header': {'invoice_no': '40378170', 'invoice_date': '10/15/2012', 'seller': '
+  raw_data: <class 'str'> - {"ocr_words": "['Invoice no: 40378170', 'Date of issue:', '10/15/2012', 'Seller:', 'Client:', 'Patel
+
+Processing 20 samples...
+
+[1/20] Processing sample 0...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (92 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.6s
+  Accuracy: 100.00%
+  Time: 9.44s
+  LLM Used: True
+  Matches: 5/5
+
+[2/20] Processing sample 1...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (137 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 100.00%
+  Time: 10.38s
+  LLM Used: True
+  Matches: 5/5
+
+[3/20] Processing sample 2...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (169 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 60.00%
+  Time: 11.31s
+  LLM Used: True
+  Matches: 3/5
+
+[4/20] Processing sample 3...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (181 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+      ⚠️  LLM total (27301261.0) matches invoice ID (27301261), using heuristic
+  Accuracy: 100.00%
+  Time: 13.07s
+  LLM Used: True
+  Matches: 5/5
+
+[5/20] Processing sample 4...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (194 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 11.74s
+  LLM Used: True
+  Matches: 4/5
+
+[6/20] Processing sample 5...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (87 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+      ⚠️  LLM total (63665479.0) matches invoice ID (63665479), using heuristic
+  Accuracy: 100.00%
+  Time: 10.60s
+  LLM Used: True
+  Matches: 5/5
+
+[7/20] Processing sample 6...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (197 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 60.00%
+  Time: 11.62s
+  LLM Used: True
+  Matches: 3/5
+
+[8/20] Processing sample 7...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (130 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+  Accuracy: 100.00%
+  Time: 11.10s
+  LLM Used: True
+  Matches: 5/5
+
+[9/20] Processing sample 8...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (193 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.6s
+      ⚠️  LLM total (65507091.0) matches invoice ID (65507091), using heuristic
+  Accuracy: 80.00%
+  Time: 14.73s
+  LLM Used: True
+  Matches: 4/5
+
+[10/20] Processing sample 9...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (213 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 12.71s
+  LLM Used: True
+  Matches: 4/5
+
+[11/20] Processing sample 10...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (115 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 60.00%
+  Time: 11.46s
+  LLM Used: True
+  Matches: 3/5
+
+[12/20] Processing sample 11...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (155 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+      ⚠️  LLM total (11489615.0) matches invoice ID (11489615), using heuristic
+  Accuracy: 100.00%
+  Time: 11.93s
+  LLM Used: True
+  Matches: 5/5
+
+[13/20] Processing sample 12...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (218 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 15.60s
+  LLM Used: True
+  Matches: 4/5
+
+[14/20] Processing sample 13...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (132 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 11.98s
+  LLM Used: True
+  Matches: 4/5
+
+[15/20] Processing sample 14...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (83 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+  Accuracy: 100.00%
+  Time: 14.15s
+  LLM Used: True
+  Matches: 5/5
+
+[16/20] Processing sample 15...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (88 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 100.00%
+  Time: 10.03s
+  LLM Used: True
+  Matches: 5/5
+
+[17/20] Processing sample 16...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (72 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+  Accuracy: 100.00%
+  Time: 11.46s
+  LLM Used: True
+  Matches: 5/5
+
+[18/20] Processing sample 17...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (180 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 12.06s
+  LLM Used: True
+  Matches: 4/5
+
+[19/20] Processing sample 18...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (118 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 13.00s
+  LLM Used: True
+  Matches: 4/5
+
+[20/20] Processing sample 19...
+    → Using local OCR (Tesseract/EasyOCR - primary)... ✓ (182 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+Gemini API call failed: 404 models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 10.82s
+  LLM Used: True
+  Matches: 4/5
+
+============================================================
+VALIDATION SUMMARY
+============================================================
+Total Samples Processed: 20
+Successful Extractions: 20
+Failed Extractions: 0
+Average Accuracy: 86.00%
+LLM Usage Rate: 100.00%
+Samples with LLM: 20/20
+
+Field-level Accuracy:
+  invoice_id          : 90.00% (18/20)
+  invoice_date        : 90.00% (18/20)
+  total_amount        : 55.00% (11/20)
+  currency            : 100.00% (20/20)
+  vendor_name         : 95.00% (19/20)
+
+Results saved to validation_results.json

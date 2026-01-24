@@ -1,0 +1,211 @@
+Loading Hugging Face dataset...
+✓ Loaded dataset with 2043 samples
+
+Inspecting first sample structure...
+Sample type: <class 'dict'>
+Sample keys: ['image', 'id', 'parsed_data', 'raw_data']
+  image: <class 'PIL.JpegImagePlugin.JpegImageFile'> - PIL.Image
+  id: <class 'str'> - 0
+  parsed_data: <class 'str'> - {"xml": "", "json": "{'header': {'invoice_no': '40378170', 'invoice_date': '10/15/2012', 'seller': '
+  raw_data: <class 'str'> - {"ocr_words": "['Invoice no: 40378170', 'Date of issue:', '10/15/2012', 'Seller:', 'Client:', 'Patel
+
+Processing 20 samples...
+
+[1/20] Processing sample 0...
+    → Using cached OCR (92 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.6s
+  Accuracy: 80.00%
+  Time: 1.28s
+  LLM Used: True
+  Matches: 4/5
+
+[2/20] Processing sample 1...
+    → Using cached OCR (137 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 1.13s
+  LLM Used: True
+  Matches: 4/5
+
+[3/20] Processing sample 2...
+    → Using cached OCR (169 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 60.00%
+  Time: 1.20s
+  LLM Used: True
+  Matches: 3/5
+
+[4/20] Processing sample 3...
+    → Using cached OCR (181 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.4s
+  Accuracy: 80.00%
+  Time: 1.18s
+  LLM Used: True
+  Matches: 4/5
+
+[5/20] Processing sample 4...
+    → Using cached OCR (194 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.5s
+  Accuracy: 80.00%
+  Time: 1.24s
+  LLM Used: True
+  Matches: 4/5
+
+[6/20] Processing sample 5...
+    → Using cached OCR (87 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ✓ LLM (groq): 0.7s
+  Accuracy: 80.00%
+  Time: 1.42s
+  LLM Used: True
+  Matches: 4/5
+
+[7/20] Processing sample 6...
+    → Using cached OCR (197 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.7s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 10.41s
+  LLM Used: True
+  Matches: 4/5
+
+[8/20] Processing sample 7...
+    → Using cached OCR (130 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.7s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 10.43s
+  LLM Used: True
+  Matches: 4/5
+
+[9/20] Processing sample 8...
+    → Using cached OCR (193 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.8s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 10.50s
+  LLM Used: True
+  Matches: 4/5
+
+[10/20] Processing sample 9...
+    → Using cached OCR (213 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.8s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 11.24s
+  LLM Used: True
+  Matches: 4/5
+
+[11/20] Processing sample 10...
+    → Using cached OCR (115 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.7s (timeout: 8.0s)
+  Accuracy: 60.00%
+  Time: 10.38s
+  LLM Used: True
+  Matches: 3/5
+
+[12/20] Processing sample 11...
+    → Using cached OCR (155 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.8s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 10.95s
+  LLM Used: True
+  Matches: 4/5
+
+[13/20] Processing sample 12...
+    → Using cached OCR (218 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.6s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 10.47s
+  LLM Used: True
+  Matches: 4/5
+
+[14/20] Processing sample 13...
+    → Using cached OCR (132 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 10.7s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 11.43s
+  LLM Used: True
+  Matches: 4/5
+
+[15/20] Processing sample 14...
+    → Using cached OCR (83 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.7s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 10.33s
+  LLM Used: True
+  Matches: 4/5
+
+[16/20] Processing sample 15...
+    → Using cached OCR (88 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 10.8s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 11.42s
+  LLM Used: True
+  Matches: 4/5
+
+[17/20] Processing sample 16...
+    → Using cached OCR (72 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  ⚠️  LLM (groq) slow: 9.8s (timeout: 8.0s)
+  Accuracy: 80.00%
+  Time: 11.06s
+  LLM Used: True
+  Matches: 4/5
+
+[18/20] Processing sample 17...
+    → Using cached OCR (180 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  → Using cached LLM result
+  Accuracy: 80.00%
+  Time: 0.78s
+  LLM Used: True
+  Matches: 4/5
+
+[19/20] Processing sample 18...
+    → Using cached OCR (118 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  → Using cached LLM result
+  Accuracy: 80.00%
+  Time: 0.91s
+  LLM Used: True
+  Matches: 4/5
+
+[20/20] Processing sample 19...
+    → Using cached OCR (182 blocks)
+    → Calling LLM for 3 fields: invoice_date, total_amount, vendor_name
+  → Using cached LLM result
+  Accuracy: 80.00%
+  Time: 0.74s
+  LLM Used: True
+  Matches: 4/5
+
+============================================================
+VALIDATION SUMMARY
+============================================================
+Total Samples Processed: 20
+Successful Extractions: 20
+Failed Extractions: 0
+Average Accuracy: 78.00%
+LLM Usage Rate: 100.00%
+Samples with LLM: 20/20
+
+Field-level Accuracy:
+  invoice_id          : 95.00% (19/20)
+  invoice_date        : 95.00% (19/20)
+  total_amount        : 5.00% (1/20)
+  currency            : 100.00% (20/20)
+  vendor_name         : 95.00% (19/20)
+
+Results saved to validation_results.json
