@@ -1,12 +1,12 @@
 /**
  * CSV Export Button Component
- * 
+ *
  * Provides CSV export functionality with ERP format selection.
  * Following industry standards (Oct 2025) with proper UX patterns.
  */
 
-import { useState } from 'react';
-import { invoiceAPI } from '../services/invoice.api';
+import { useState } from "react";
+import { invoiceAPI } from "../services/invoice.api";
 
 interface CSVExportButtonProps {
   documentId: string;
@@ -15,22 +15,22 @@ interface CSVExportButtonProps {
 }
 
 const ERP_FORMATS = [
-  { value: 'quickbooks', label: 'QuickBooks' },
-  { value: 'sap', label: 'SAP' },
-  { value: 'oracle', label: 'Oracle' },
-  { value: 'xero', label: 'Xero' },
-  { value: 'default', label: 'Default (CSV)' },
+  { value: "quickbooks", label: "QuickBooks" },
+  { value: "sap", label: "SAP" },
+  { value: "oracle", label: "Oracle" },
+  { value: "xero", label: "Xero" },
+  { value: "default", label: "Default (CSV)" },
 ];
 
 const CSVExportButton = ({
   documentId,
-  filename = 'invoice',
+  filename = "invoice",
   disabled = false,
 }: CSVExportButtonProps) => {
   const [isExporting, setIsExporting] = useState(false);
   const [showFormatMenu, setShowFormatMenu] = useState(false);
 
-  const handleExport = async (erpType: string = 'quickbooks') => {
+  const handleExport = async (erpType: string = "quickbooks") => {
     if (disabled || isExporting) return;
 
     try {
@@ -39,7 +39,7 @@ const CSVExportButton = ({
 
       // Create download link
       const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
       a.download = `${filename}_${erpType}.csv`;
       document.body.appendChild(a);
@@ -47,8 +47,8 @@ const CSVExportButton = ({
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('Export failed:', error);
-      alert('Failed to export CSV. Please try again.');
+      console.error("Export failed:", error);
+      alert("Failed to export CSV. Please try again.");
     } finally {
       setIsExporting(false);
       setShowFormatMenu(false);
@@ -139,9 +139,9 @@ const CSVExportButton = ({
                   className={`
                     block w-full text-left px-4 py-2 text-sm
                     ${
-                      format.value === 'quickbooks'
-                        ? 'bg-rexcan-light-grey-secondary text-rexcan-dark-blue-primary'
-                        : 'text-rexcan-dark-blue-secondary hover:bg-gray-100'
+                      format.value === "quickbooks"
+                        ? "bg-rexcan-light-grey-secondary text-rexcan-dark-blue-primary"
+                        : "text-rexcan-dark-blue-secondary hover:bg-gray-100"
                     }
                   `}
                 >
@@ -157,4 +157,3 @@ const CSVExportButton = ({
 };
 
 export default CSVExportButton;
-

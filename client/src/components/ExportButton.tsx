@@ -1,12 +1,12 @@
 /**
  * Export Button Component
- * 
+ *
  * Provides CSV and JSON export functionality with ERP format selection for CSV.
  * Following industry standards (Oct 2025) with proper UX patterns.
  */
 
-import { useState } from 'react';
-import { documentAPI } from '../services/document.api';
+import { useState } from "react";
+import { documentAPI } from "../services/document.api";
 
 interface ExportButtonProps {
   documentId: string;
@@ -17,11 +17,11 @@ interface ExportButtonProps {
 }
 
 const ERP_FORMATS = [
-  { value: 'quickbooks', label: 'QuickBooks' },
-  { value: 'sap', label: 'SAP' },
-  { value: 'oracle', label: 'Oracle' },
-  { value: 'xero', label: 'Xero' },
-  { value: 'default', label: 'Default (CSV)' },
+  { value: "quickbooks", label: "QuickBooks" },
+  { value: "sap", label: "SAP" },
+  { value: "oracle", label: "Oracle" },
+  { value: "xero", label: "Xero" },
+  { value: "default", label: "Default (CSV)" },
 ];
 
 /**
@@ -29,17 +29,19 @@ const ERP_FORMATS = [
  */
 const sanitizeFilename = (filename: string): string => {
   // Remove file extension
-  const nameWithoutExt = filename.replace(/\.[^/.]+$/, '');
+  const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
   // Remove or replace special characters that might cause issues in filenames
-  return nameWithoutExt
-    .replace(/[^a-z0-9]/gi, '_')
-    .replace(/_+/g, '_')
-    .replace(/^_|_$/g, '') || 'document';
+  return (
+    nameWithoutExt
+      .replace(/[^a-z0-9]/gi, "_")
+      .replace(/_+/g, "_")
+      .replace(/^_|_$/g, "") || "document"
+  );
 };
 
 const ExportButton = ({
   documentId,
-  filename = 'invoice',
+  filename = "invoice",
   disabled = false,
   documentStatus,
   pythonJobId,
@@ -48,13 +50,13 @@ const ExportButton = ({
   const [showMenu, setShowMenu] = useState(false);
 
   // Determine if export should be disabled based on document status
-  const isProcessed = documentStatus === 'processed' && pythonJobId;
+  const isProcessed = documentStatus === "processed" && pythonJobId;
   const isDisabled = disabled || !isProcessed || isExporting;
-  
+
   // Sanitize filename for downloads
   const sanitizedFilename = sanitizeFilename(filename);
 
-  const handleCSVExport = async (erpType: string = 'quickbooks') => {
+  const handleCSVExport = async (erpType: string = "quickbooks") => {
     if (isDisabled) return;
 
     try {
@@ -63,7 +65,7 @@ const ExportButton = ({
 
       // Create download link
       const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
       a.download = `${sanitizedFilename}_${erpType}.csv`;
       document.body.appendChild(a);
@@ -71,8 +73,8 @@ const ExportButton = ({
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('CSV export failed:', error);
-      alert('Failed to export CSV. Please try again.');
+      console.error("CSV export failed:", error);
+      alert("Failed to export CSV. Please try again.");
     } finally {
       setIsExporting(false);
       setShowMenu(false);
@@ -88,7 +90,7 @@ const ExportButton = ({
 
       // Create download link
       const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
       a.download = `${sanitizedFilename}.json`;
       document.body.appendChild(a);
@@ -96,8 +98,8 @@ const ExportButton = ({
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('JSON export failed:', error);
-      alert('Failed to export JSON. Please try again.');
+      console.error("JSON export failed:", error);
+      alert("Failed to export JSON. Please try again.");
     } finally {
       setIsExporting(false);
       setShowMenu(false);
@@ -109,7 +111,11 @@ const ExportButton = ({
       <button
         onClick={() => setShowMenu(!showMenu)}
         disabled={isDisabled}
-        title={!isProcessed ? 'Document must be processed before exporting' : undefined}
+        title={
+          !isProcessed
+            ? "Document must be processed before exporting"
+            : undefined
+        }
         className={`
           inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
           text-white bg-rexcan-dark-blue-primary hover:bg-rexcan-dark-blue-secondary
@@ -187,20 +193,30 @@ const ExportButton = ({
                 onClick={handleJSONExport}
                 className="block w-full text-left px-4 py-2 text-sm text-rexcan-dark-blue-secondary hover:bg-gray-100 flex items-center gap-2"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                  />
                 </svg>
                 Export as JSON
               </button>
-              
+
               {/* Divider */}
               <div className="border-t border-gray-200 my-1"></div>
-              
+
               {/* CSV Export Header */}
               <div className="px-4 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide">
                 Export as CSV
               </div>
-              
+
               {/* ERP Format Options */}
               {ERP_FORMATS.map((format) => (
                 <button
@@ -209,9 +225,9 @@ const ExportButton = ({
                   className={`
                     block w-full text-left px-4 py-2 text-sm
                     ${
-                      format.value === 'quickbooks'
-                        ? 'bg-rexcan-light-grey-secondary text-rexcan-dark-blue-primary'
-                        : 'text-rexcan-dark-blue-secondary hover:bg-gray-100'
+                      format.value === "quickbooks"
+                        ? "bg-rexcan-light-grey-secondary text-rexcan-dark-blue-primary"
+                        : "text-rexcan-dark-blue-secondary hover:bg-gray-100"
                     }
                   `}
                 >
@@ -227,4 +243,3 @@ const ExportButton = ({
 };
 
 export default ExportButton;
-

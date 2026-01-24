@@ -1,13 +1,13 @@
 /**
  * Manual Correction Interface Component (HITL)
- * 
+ *
  * Allows users to manually correct extracted invoice fields.
  * Following industry standards (Oct 2025) with proper UX patterns.
  */
 
-import { useState } from 'react';
-import { invoiceAPI, type InvoiceExtract } from '../services/invoice.api';
-import ConfidenceIndicator from './ConfidenceIndicator';
+import { useState } from "react";
+import { invoiceAPI, type InvoiceExtract } from "../services/invoice.api";
+import ConfidenceIndicator from "./ConfidenceIndicator";
 
 interface ManualCorrectionInterfaceProps {
   documentId: string;
@@ -35,7 +35,7 @@ const ManualCorrectionInterface = ({
 
   const handleSave = async () => {
     if (Object.keys(corrections).length === 0) {
-      alert('No corrections made');
+      alert("No corrections made");
       return;
     }
 
@@ -48,21 +48,26 @@ const ManualCorrectionInterface = ({
       });
       onSave?.(response.result);
     } catch (error) {
-      console.error('Failed to save corrections:', error);
-      alert('Failed to save corrections. Please try again.');
+      console.error("Failed to save corrections:", error);
+      alert("Failed to save corrections. Please try again.");
     } finally {
       setSaving(false);
     }
   };
 
   const fields = [
-    { key: 'invoice_id', label: 'Invoice ID', type: 'text' },
-    { key: 'vendor_name', label: 'Vendor Name', type: 'text' },
-    { key: 'invoice_date', label: 'Invoice Date', type: 'date' },
-    { key: 'total_amount', label: 'Total Amount', type: 'number', step: '0.01' },
-    { key: 'amount_subtotal', label: 'Subtotal', type: 'number', step: '0.01' },
-    { key: 'amount_tax', label: 'Tax Amount', type: 'number', step: '0.01' },
-    { key: 'currency', label: 'Currency', type: 'text' },
+    { key: "invoice_id", label: "Invoice ID", type: "text" },
+    { key: "vendor_name", label: "Vendor Name", type: "text" },
+    { key: "invoice_date", label: "Invoice Date", type: "date" },
+    {
+      key: "total_amount",
+      label: "Total Amount",
+      type: "number",
+      step: "0.01",
+    },
+    { key: "amount_subtotal", label: "Subtotal", type: "number", step: "0.01" },
+    { key: "amount_tax", label: "Tax Amount", type: "number", step: "0.01" },
+    { key: "currency", label: "Currency", type: "text" },
   ];
 
   return (
@@ -78,7 +83,9 @@ const ManualCorrectionInterface = ({
 
       <div className="space-y-4">
         {fields.map((field) => {
-          const currentValue = corrections[field.key] ?? invoiceData[field.key as keyof InvoiceExtract];
+          const currentValue =
+            corrections[field.key] ??
+            invoiceData[field.key as keyof InvoiceExtract];
           const confidence = invoiceData.field_confidences?.[field.key] || 0;
           const source = invoiceData.field_sources?.[field.key];
 
@@ -97,9 +104,12 @@ const ManualCorrectionInterface = ({
               <input
                 type={field.type}
                 step={field.step}
-                value={currentValue || ''}
+                value={currentValue || ""}
                 onChange={(e) => {
-                  const value = field.type === 'number' ? parseFloat(e.target.value) : e.target.value;
+                  const value =
+                    field.type === "number"
+                      ? parseFloat(e.target.value)
+                      : e.target.value;
                   handleFieldChange(field.key, value);
                 }}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00FFD8]"
@@ -136,7 +146,7 @@ const ManualCorrectionInterface = ({
           disabled={saving || Object.keys(corrections).length === 0}
           className="px-4 py-2 text-sm font-medium text-white bg-rexcan-dark-blue-primary rounded-md hover:bg-rexcan-dark-blue-secondary disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {saving ? 'Saving...' : 'Save Corrections'}
+          {saving ? "Saving..." : "Save Corrections"}
         </button>
       </div>
     </div>
@@ -144,4 +154,3 @@ const ManualCorrectionInterface = ({
 };
 
 export default ManualCorrectionInterface;
-
