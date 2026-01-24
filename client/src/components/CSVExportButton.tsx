@@ -29,7 +29,6 @@ const CSVExportButton = ({
 }: CSVExportButtonProps) => {
   const [isExporting, setIsExporting] = useState(false);
   const [showFormatMenu, setShowFormatMenu] = useState(false);
-  const [selectedFormat, setSelectedFormat] = useState('quickbooks');
 
   const handleExport = async (erpType: string = 'quickbooks') => {
     if (disabled || isExporting) return;
@@ -140,7 +139,7 @@ const CSVExportButton = ({
                   className={`
                     block w-full text-left px-4 py-2 text-sm
                     ${
-                      selectedFormat === format.value
+                      format.value === 'quickbooks'
                         ? 'bg-rexcan-light-grey-secondary text-rexcan-dark-blue-primary'
                         : 'text-rexcan-dark-blue-secondary hover:bg-gray-100'
                     }

@@ -78,14 +78,6 @@ const EditableFieldsForm = ({ extractedData, onUpdate }: EditableFieldsFormProps
     }
   };
 
-  const parseCurrency = (value: string): number | undefined => {
-    if (!value) return undefined;
-    // Remove currency symbols and parse
-    const cleaned = value.replace(/[$€£]/g, '').trim();
-    const parsed = parseFloat(cleaned);
-    return isNaN(parsed) ? undefined : parsed;
-  };
-
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">

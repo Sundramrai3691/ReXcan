@@ -5,7 +5,7 @@
  * Following industry standards (Oct 2025) with proper UX patterns.
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { invoiceAPI, type InvoiceExtract } from '../services/invoice.api';
 import ConfidenceIndicator from './ConfidenceIndicator';
 

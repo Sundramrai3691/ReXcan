@@ -3,7 +3,6 @@ import type {
   DocumentUploadResponse,
   DocumentsListResponse,
   DocumentResponse,
-  ApiResponse,
 } from '../types/document.types';
 
 /**

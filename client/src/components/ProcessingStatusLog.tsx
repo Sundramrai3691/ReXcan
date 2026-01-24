@@ -32,7 +32,6 @@ interface ProcessingMetrics {
 
 const ProcessingStatusLog = ({ pythonJobId, onComplete, showHeader = true, compact = false }: ProcessingStatusLogProps) => {
   const [logs, setLogs] = useState<LogEntry[]>([]);
-  const [status, setStatus] = useState<string>('processing');
   const [isComplete, setIsComplete] = useState(false);
   const [jobNotFound, setJobNotFound] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -82,7 +81,10 @@ const ProcessingStatusLog = ({ pythonJobId, onComplete, showHeader = true, compa
         if (response.success && response.data) {
           const { logs: newLogs, status: newStatus, has_result } = response.data;
           
-          setStatus(newStatus);
+          // Optionally log status for debugging
+          if (newStatus) {
+            // Status available but not stored in state
+          }
           setError(null);
           
           // Convert logs to LogEntry format

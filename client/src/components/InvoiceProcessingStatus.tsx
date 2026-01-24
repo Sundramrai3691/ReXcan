@@ -38,7 +38,6 @@ const InvoiceProcessingStatus = ({
         
         // Update progress based on timings
         if (extract.timings) {
-          const totalTime = Object.values(extract.timings).reduce((a, b) => a + (b || 0), 0);
           const ocrTime = extract.timings.ocr_time || 0;
           const heuristicsTime = extract.timings.heuristics_time || 0;
           const llmTime = extract.timings.llm_time || 0;
