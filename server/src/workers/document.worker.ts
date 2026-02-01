@@ -12,14 +12,41 @@ import { pythonAPIService } from '../services/python-api.service.js';
 import path from 'path';
 
 // Worker configuration
+const getWorkerHostname = (url: string): string | undefined => {
+  try {
+    const urlObj = new URL(url);
+    return urlObj.hostname;
+  } catch {
+    return undefined;
+  }
+};
+
+// Worker configuration
+const getWorkerConnection = () => {
+  if (env.redis.url) {
+    const hostname = getWorkerHostname(env.redis.url);
+    return {
+      url: env.redis.url,
+      family: 4, // Force IPv4
+      enableReadyCheck: false,
+      maxRetriesPerRequest: null,
+      retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
+      ...(hostname && { tls: { servername: hostname } }), // TLS with SNI
+    };
+  }
+  return {
+    host: env.redis.host,
+    port: env.redis.port,
+    family: 4, // Force IPv4
+    enableReadyCheck: false,
+    maxRetriesPerRequest: null,
+    retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
+    ...(env.redis.password && { password: env.redis.password }),
+  };
+};
+
 const workerOptions = {
-  connection: env.redis.url 
-    ? { url: env.redis.url }
-    : {
-        host: env.redis.host,
-        port: env.redis.port,
-        ...(env.redis.password && { password: env.redis.password }),
-      },
+  connection: getWorkerConnection(),
   concurrency: 5, // Process 5 jobs concurrently
   limiter: {
     max: 10, // Max 10 jobs

@@ -17,19 +17,40 @@ export interface DocumentJobData {
 
 interface QueueConfig {
   connection: {
+
     url?: string;
     host?: string;
     port?: number;
     password?: string;
+    family?: number;
+    enableReadyCheck?: boolean;
+    maxRetriesPerRequest?: number | null;
+    retryStrategy?: (times: number) => number;
+    tls?: { servername?: string };
   };
 }
+
+const getHostnameFromUrl = (url: string): string | undefined => {
+  try {
+    const urlObj = new URL(url);
+    return urlObj.hostname;
+  } catch {
+    return undefined;
+  }
+};
 
 const getQueueConfig = (): QueueConfig => {
   // Prefer REDIS_URL if available (handles TLS automatically)
   if (env.redis.url) {
+    const hostname = getHostnameFromUrl(env.redis.url);
     return {
       connection: {
         url: env.redis.url,
+        family: 4, // Force IPv4
+        enableReadyCheck: false,
+        maxRetriesPerRequest: null,
+        retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
+        ...(hostname && { tls: { servername: hostname } }), // TLS with SNI
       },
     };
   }
@@ -39,11 +60,14 @@ const getQueueConfig = (): QueueConfig => {
     connection: {
       host: env.redis.host,
       port: env.redis.port,
+      family: 4, // Force IPv4
+      enableReadyCheck: false,
+      maxRetriesPerRequest: null,
+      retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
       ...(env.redis.password && { password: env.redis.password }),
     },
   };
 };
-
 // Create queue instances
 export const documentProcessingQueue = new Queue<DocumentJobData>(
   QueueName.DOCUMENT_PROCESSING,
