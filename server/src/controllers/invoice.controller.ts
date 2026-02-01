@@ -482,7 +482,8 @@ export const getReviewQueue = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const limitStr = Array.isArray(req.query.limit) ? req.query.limit[0] : (req.query.limit as string | undefined);
+    // Normalize query param to string to satisfy TypeScript (string | ParsedQs -> string)
+    const limitStr = Array.isArray(req.query.limit) ? req.query.limit[0] : String(req.query.limit);
     const limit = parseInt(limitStr || '20', 10) || 20;
 
     try {
