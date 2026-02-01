@@ -1,6 +1,7 @@
 import { Queue } from 'bullmq';
 import { env } from './env.js';
 import { logger } from '../utils/logger.js';
+import { getRedisConnectionOptions } from './redis.js';
 
 import type { QueueOptions } from 'bullmq';
 export enum QueueName {
@@ -55,28 +56,20 @@ const getHostnameFromUrl = (url: string): string | undefined => {
 // Create queue instances
 const getQueueOptions = (): QueueOptions => {
   if (env.redis.url) {
-    // Use raw URL string so the Redis client can handle TLS/SNI and ports
+    // Use structured connection options from factory
     return {
-      connection: env.redis.url as unknown as Record<string, unknown>,
+      connection: getRedisConnectionOptions(),
       defaultJobOptions: {
         attempts: 3,
         backoff: { type: 'exponential', delay: 2000 },
         removeOnComplete: { age: 86400, count: 1000 },
         removeOnFail: { age: 604800 },
       },
-    } as unknown as QueueOptions;
+    } as QueueOptions;
   }
 
   return {
-    connection: {
-      host: env.redis.host,
-      port: env.redis.port,
-      password: env.redis.password,
-      family: 4,
-      enableReadyCheck: false,
-      maxRetriesPerRequest: null,
-      retryStrategy: (times: number) => Math.min(times * 100, 2000),
-    },
+    connection: getRedisConnectionOptions(),
     defaultJobOptions: {
       attempts: 3,
       backoff: { type: 'exponential', delay: 2000 },

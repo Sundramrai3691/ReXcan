@@ -9,9 +9,9 @@ class AuthService {
    * Generate JWT token
    */
   private generateToken(payload: TokenPayload): string {
-    return jwt.sign(payload, env.jwt.secret, {
+    return jwt.sign(payload as any, env.jwt.secret as any, ({
       expiresIn: env.jwt.expire,
-    });
+    } as any));
   }
 
   /**

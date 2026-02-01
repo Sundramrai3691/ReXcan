@@ -22,24 +22,10 @@ const getWorkerHostname = (url: string): string | undefined => {
 };
 
 // Worker configuration
-const getWorkerConnection = () => {
-  if (env.redis.url) {
-    // Use raw URL string so the Redis client handles TLS/SNI and ports
-    return env.redis.url as unknown as Record<string, unknown>;
-  }
-  return {
-    host: env.redis.host,
-    port: env.redis.port,
-    family: 4, // Force IPv4
-    enableReadyCheck: false,
-    maxRetriesPerRequest: null,
-    retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
-    ...(env.redis.password && { password: env.redis.password }),
-  };
-};
+import { getRedisConnectionOptions } from '../config/redis.js';
 
 const workerOptions = {
-  connection: getWorkerConnection(),
+  connection: getRedisConnectionOptions(),
   concurrency: 5, // Process 5 jobs concurrently
   limiter: {
     max: 10, // Max 10 jobs
