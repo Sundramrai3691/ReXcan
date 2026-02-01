@@ -5,6 +5,7 @@ import { pubsubService } from '../services/pubsub.service.js';
 import { ApiResponseHelper } from '../utils/apiResponse.js';
 import { logger } from '../utils/logger.js';
 import { AuthRequest } from '../types/auth.types.js';
+import { asString } from '../utils/query.js';
 
 /**
  * Manually trigger email fetching and publish to Pub/Sub
@@ -16,8 +17,7 @@ export const fetchAndPublishEmails = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const maxResultsStr = Array.isArray(req.query.maxResults) ? req.query.maxResults[0] : (req.query.maxResults as string | undefined);
-    const maxResults = parseInt(maxResultsStr || '10', 10) || 10;
+    const maxResults = parseInt(asString(req.query.maxResults) || '10', 10) || 10;
 
     try {
       // Check if email service is initialized

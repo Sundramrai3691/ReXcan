@@ -7,6 +7,7 @@ import { logger } from '../utils/logger.js';
 import { AuthRequest } from '../types/auth.types.js';
 import path from 'path';
 import { randomUUID } from 'crypto';
+import { asString } from '../utils/query.js';
 
 // Upload document (image or PDF)
 export const uploadDocument = asyncHandler(
@@ -24,9 +25,7 @@ export const uploadDocument = asyncHandler(
 
     // Get selected model from request body or query, default to 'best'
     const _selectedModelCandidate = req.body.model || req.query.model || 'best';
-    const selectedModel = Array.isArray(_selectedModelCandidate)
-      ? _selectedModelCandidate[0]
-      : (_selectedModelCandidate as string);
+    const selectedModel = asString(_selectedModelCandidate) || 'best';
 
     // Validate model
     const validModels = ['gemini', 'openai', 'groq', 'claude', 'rexcan', 'best'];
@@ -78,10 +77,10 @@ export const getDocuments = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const limitStr = Array.isArray(req.query.limit) ? req.query.limit[0] : (req.query.limit as string | undefined);
-    const skipStr = Array.isArray(req.query.skip) ? req.query.skip[0] : (req.query.skip as string | undefined);
-    const limit = parseInt(limitStr || '50', 10) || 50;
-    const skip = parseInt(skipStr || '0', 10) || 0;
+    const limitStr = asString(req.query.limit) || '50';
+    const skipStr = asString(req.query.skip) || '0';
+    const limit = parseInt(limitStr, 10) || 50;
+    const skip = parseInt(skipStr, 10) || 0;
 
     const { documents, total } = await getUserDocuments(userId, limit, skip);
 
@@ -109,7 +108,7 @@ export const getDocument = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { id } = req.params;
+    const id = asString(req.params.id);
 
     const document = await getDocumentById(id, userId);
 
@@ -133,7 +132,7 @@ export const updateDocument = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { id } = req.params;
+    const id = asString(req.params.id);
     const { extractedData, lineItems } = req.body;
 
     // Get document to verify ownership
@@ -326,7 +325,7 @@ export const getBatchStatus = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { batchId } = req.params;
+    const batchId = asString(req.params.batchId);
 
     if (!batchId) {
       return ApiResponseHelper.badRequest(res, 'Batch ID is required');
@@ -391,7 +390,7 @@ export const deleteDocumentController = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { id } = req.params;
+    const id = asString(req.params.id);
 
     const deleted = await deleteDocument(id, userId);
 

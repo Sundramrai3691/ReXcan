@@ -11,6 +11,7 @@ import { ApiResponseHelper } from '../utils/apiResponse.js';
 import { logger } from '../utils/logger.js';
 import { AuthRequest } from '../types/auth.types.js';
 import { pythonAPIService } from '../services/python-api.service.js';
+import { asString } from '../utils/query.js';
 import { getDocumentById } from '../services/document.service.js';
 import path from 'path';
 import fs from 'fs/promises';
@@ -141,9 +142,7 @@ export const getJobStatus = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const pythonJobId = Array.isArray(req.query.pythonJobId)
-      ? req.query.pythonJobId[0]
-      : (req.query.pythonJobId as string | undefined);
+    const pythonJobId = asString(req.query.pythonJobId);
 
     if (!pythonJobId || typeof pythonJobId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Python job ID is required');
@@ -233,15 +232,9 @@ export const exportCSV = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const documentId = Array.isArray(req.query.documentId)
-      ? req.query.documentId[0]
-      : (req.query.documentId as string | undefined);
-    const erpType = Array.isArray(req.query.erp_type)
-      ? req.query.erp_type[0]
-      : ((req.query.erp_type as string) || 'quickbooks');
-    const skipSafetyCheck = (Array.isArray(req.query.skip_safety_check)
-      ? req.query.skip_safety_check[0]
-      : req.query.skip_safety_check) === 'true';
+    const documentId = asString(req.query.documentId);
+    const erpType = asString(req.query.erp_type) || 'quickbooks';
+    const skipSafetyCheck = asString(req.query.skip_safety_check) === 'true';
 
     if (!documentId || typeof documentId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -305,9 +298,7 @@ export const exportJSON = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const documentId = Array.isArray(req.query.documentId)
-      ? req.query.documentId[0]
-      : (req.query.documentId as string | undefined);
+    const documentId = asString(req.query.documentId);
 
     if (!documentId || typeof documentId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -517,7 +508,7 @@ export const applyReviewCorrections = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { id } = req.params;
+    const id = asString(req.params.id);
     const { corrections, autoPromote } = req.body;
 
     if (!corrections || typeof corrections !== 'object') {
@@ -553,7 +544,7 @@ export const rollbackCorrections = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { id } = req.params;
+    const id = asString(req.params.id);
 
     try {
       const rollbackResponse = await pythonAPIService.rollbackCorrections(id, userId);
@@ -578,7 +569,7 @@ export const getAuditLog = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { id } = req.params;
+    const id = asString(req.params.id);
 
     // Get document to verify ownership
     const document = await getDocumentById(id, userId);
@@ -644,7 +635,7 @@ export const serveUploadedFile = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { filename } = req.params;
+    const filename = asString(req.params.filename);
 
     // Security: Prevent path traversal
     if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
