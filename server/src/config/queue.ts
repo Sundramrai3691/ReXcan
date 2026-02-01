@@ -17,13 +17,24 @@ export interface DocumentJobData {
 
 interface QueueConfig {
   connection: {
-    host: string;
-    port: number;
+    url?: string;
+    host?: string;
+    port?: number;
     password?: string;
   };
 }
 
 const getQueueConfig = (): QueueConfig => {
+  // Prefer REDIS_URL if available (handles TLS automatically)
+  if (env.redis.url) {
+    return {
+      connection: {
+        url: env.redis.url,
+      },
+    };
+  }
+  
+  // Fallback to host/port configuration
   return {
     connection: {
       host: env.redis.host,

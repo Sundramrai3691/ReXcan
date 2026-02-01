@@ -13,11 +13,13 @@ import path from 'path';
 
 // Worker configuration
 const workerOptions = {
-  connection: {
-    host: env.redis.host,
-    port: env.redis.port,
-    ...(env.redis.password && { password: env.redis.password }),
-  },
+  connection: env.redis.url 
+    ? { url: env.redis.url }
+    : {
+        host: env.redis.host,
+        port: env.redis.port,
+        ...(env.redis.password && { password: env.redis.password }),
+      },
   concurrency: 5, // Process 5 jobs concurrently
   limiter: {
     max: 10, // Max 10 jobs
