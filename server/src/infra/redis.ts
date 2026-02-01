@@ -1,4 +1,5 @@
 import { URL } from 'url';
+import Redis from 'ioredis';
 import type { RedisOptions } from 'ioredis';
 
 export const getRedisOptions = (): RedisOptions => {
@@ -32,10 +33,6 @@ export const getRedisOptions = (): RedisOptions => {
   return options;
 };
 
-export const createRedisClient = (): import('ioredis').default => {
-  // Use require to avoid interop issues with ESM/CJS differences
-  // ioredis default export is a class
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const IORedis = require('ioredis');
-  return new IORedis(getRedisOptions());
+export const createRedisClient = (): Redis => {
+  return new Redis(getRedisOptions());
 };
