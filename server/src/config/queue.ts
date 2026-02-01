@@ -56,34 +56,27 @@ export const documentProcessingQueue = new Queue<DocumentJobData>(
 );
 
 // Queue event listeners
-documentProcessingQueue.on('error', (error: any) => {
+documentProcessingQueue.on('error' as any, (error: any) => {
   logger.error('Queue error:', error);
 });
 
-documentProcessingQueue.on('waiting', (job: any) => {
+documentProcessingQueue.on('waiting' as any, (job: any) => {
   logger.info(`Job ${job.id} is waiting`);
 });
 
-documentProcessingQueue.on('active', (job: any) => {
+documentProcessingQueue.on('active' as any, (job: any) => {
   logger.info(`Job ${job.id} is now active`);
 });
 
-documentProcessingQueue.on('completed', (job: any) => {
+documentProcessingQueue.on('completed' as any, (job: any) => {
   logger.info(`Job ${job.id} has completed`);
 });
 
-documentProcessingQueue.on('failed', (job: any, err: any) => {
+documentProcessingQueue.on('failed' as any, (job: any, err: any) => {
   logger.error(`Job ${job?.id} has failed:`, err);
 });
 
-export interface DocumentJobData {
-  documentId: string;
-  userId: string;
-  filePath: string;
-  fileType: 'pdf' | 'image';
-  fileName: string;
-  selectedModel?: string; // AI model: 'gemini', 'openai', 'groq', 'claude', 'rexcan', 'best'
-}
+/* DocumentJobData is declared above */
 
 export const addDocumentToQueue = async (data: DocumentJobData): Promise<string> => {
   const job = await documentProcessingQueue.add('process-document', data, {
