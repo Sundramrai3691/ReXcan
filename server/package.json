@@ -10,6 +10,7 @@
     "start": "node dist/index.js",
     "worker": "tsx src/workers/start-worker.ts",
     "worker:dev": "tsx watch src/workers/start-worker.ts",
+    "worker:prod": "node dist/workers/start-worker.js",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "type-check": "tsc --noEmit",
