@@ -79,36 +79,54 @@ const getQueueOptions = (): QueueOptions => {
   } as QueueOptions;
 };
 
-export const documentProcessingQueue = new Queue<DocumentJobData>(
-  QueueName.DOCUMENT_PROCESSING,
-  getQueueOptions()
+// Lazy initialization pattern to defer queue creation after Redis validation
+let documentProcessingQueueInstance: Queue<DocumentJobData> | null = null;
+
+export const getDocumentProcessingQueue = (): Queue<DocumentJobData> => {
+  if (!documentProcessingQueueInstance) {
+    documentProcessingQueueInstance = new Queue<DocumentJobData>(
+      QueueName.DOCUMENT_PROCESSING,
+      getQueueOptions()
+    );
+
+    // Queue event listeners
+    documentProcessingQueueInstance.on('error' as any, (error: any) => {
+      logger.error('Queue error:', error);
+    });
+
+    documentProcessingQueueInstance.on('waiting' as any, (job: any) => {
+      logger.info(`Job ${job.id} is waiting`);
+    });
+
+    documentProcessingQueueInstance.on('active' as any, (job: any) => {
+      logger.info(`Job ${job.id} is now active`);
+    });
+
+    documentProcessingQueueInstance.on('completed' as any, (job: any) => {
+      logger.info(`Job ${job.id} has completed`);
+    });
+
+    documentProcessingQueueInstance.on('failed' as any, (job: any, err: any) => {
+      logger.error(`Job ${job?.id} has failed:`, err);
+    });
+  }
+
+  return documentProcessingQueueInstance;
+};
+
+/* For backwards compatibility, expose as property */
+export const documentProcessingQueue = new Proxy(
+  {} as Queue<DocumentJobData>,
+  {
+    get: (_, prop) => {
+      return (getDocumentProcessingQueue() as any)[prop];
+    },
+  }
 );
 
-// Queue event listeners
-documentProcessingQueue.on('error' as any, (error: any) => {
-  logger.error('Queue error:', error);
-});
-
-documentProcessingQueue.on('waiting' as any, (job: any) => {
-  logger.info(`Job ${job.id} is waiting`);
-});
-
-documentProcessingQueue.on('active' as any, (job: any) => {
-  logger.info(`Job ${job.id} is now active`);
-});
-
-documentProcessingQueue.on('completed' as any, (job: any) => {
-  logger.info(`Job ${job.id} has completed`);
-});
-
-documentProcessingQueue.on('failed' as any, (job: any, err: any) => {
-  logger.error(`Job ${job?.id} has failed:`, err);
-});
-
-/* DocumentJobData is declared above */
-
 export const addDocumentToQueue = async (data: DocumentJobData): Promise<string> => {
-  const job = await documentProcessingQueue.add(
+  const queue = getDocumentProcessingQueue();
+  const job = await queue.add(
     'process-document' as const,
     data,
     {

@@ -3,20 +3,43 @@ import { logger } from '../utils/logger.js';
 
 export async function validateExternalDepsOrExit(): Promise<void> {
   let client: any | null = null;
-  try {
-    client = createRedisClient();
-    const res = await client.ping();
-    logger.info('[startup] Redis ping OK', res);
-  } catch (err) {
-    logger.error('[startup] Redis ping failed:', err);
-    // Fail fast if Redis not reachable
-    // eslint-disable-next-line no-process-exit
-    process.exit(1);
-  } finally {
+  const maxRetries = 5;
+  const baseDelayMs = 500;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      if (client) await client.quit();
-    } catch {
-      // ignore
+      client = createRedisClient();
+      const res = await client.ping();
+      logger.info('[startup] Redis ping OK', res);
+      await client.quit();
+      return;
+    } catch (err: any) {
+      const message = err?.message ?? String(err);
+      const code = err?.code ?? 'UNKNOWN';
+      const stack = err?.stack ?? '';
+
+      logger.error('[startup] Redis ping failed', {
+        message,
+        code,
+        stack,
+        attempt,
+        maxRetries,
+      });
+
+      try {
+        if (client) await client.quit();
+      } catch {
+        // ignore
+      }
+
+      if (attempt < maxRetries) {
+        const delayMs = baseDelayMs * Math.pow(2, attempt - 1);
+        logger.info(`[startup] Redis retry ${attempt}/${maxRetries} - waiting ${delayMs}ms`);
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
     }
   }
+
+  // All retries exhausted, log warning but do NOT exit
+  logger.warn('[startup] Redis unavailable at startup, will retry lazily in BullMQ');
 }

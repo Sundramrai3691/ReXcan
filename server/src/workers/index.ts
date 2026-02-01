@@ -1,11 +1,11 @@
-import { documentWorker } from './document.worker.js';
+import { getDocumentWorker } from './document.worker.js';
 import { emailPubSubWorker } from './email-pubsub.worker.js';
 import { logger } from '../utils/logger.js';
 
 export const startWorkers = (): void => {
   logger.info('Starting document processing workers...');
-  // Workers are automatically started when imported
-  // Additional worker initialization can be added here if needed
+  // Lazily initialize document worker on demand
+  getDocumentWorker();
 
   // Start email Pub/Sub worker if configured
   if (emailPubSubWorker) {
@@ -15,5 +15,5 @@ export const startWorkers = (): void => {
   }
 };
 
-export { documentWorker, emailPubSubWorker };
+export { getDocumentWorker, emailPubSubWorker };
 
