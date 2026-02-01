@@ -1,8 +1,7 @@
 import { URL } from 'url';
+import type { RedisOptions } from 'ioredis';
 
-export const getRedisOptions = (): ConstructorParameters<
-  typeof import('ioredis').default
->[0] => {
+export const getRedisOptions = (): RedisOptions => {
   const raw = process.env.REDIS_URL;
   if (!raw) {
     throw new Error('REDIS_URL is not defined; set REDIS_URL to Upstash rediss://...');
@@ -33,7 +32,7 @@ export const getRedisOptions = (): ConstructorParameters<
   return options;
 };
 
-export const createRedisClient = () => {
+export const createRedisClient = (): import('ioredis').default => {
   // Use require to avoid interop issues with ESM/CJS differences
   // ioredis default export is a class
   // eslint-disable-next-line @typescript-eslint/no-var-requires
