@@ -1,7 +1,7 @@
 import { Queue } from 'bullmq';
 import { env } from './env.js';
 import { logger } from '../utils/logger.js';
-import { getRedisConnectionOptions } from './redis.js';
+import { getRedisOptions } from '../infra/redis.js';
 
 import type { QueueOptions } from 'bullmq';
 export enum QueueName {
@@ -58,7 +58,7 @@ const getQueueOptions = (): QueueOptions => {
   if (env.redis.url) {
     // Use structured connection options from factory
     return {
-      connection: getRedisConnectionOptions(),
+      connection: getRedisOptions(),
       defaultJobOptions: {
         attempts: 3,
         backoff: { type: 'exponential', delay: 2000 },
@@ -69,7 +69,7 @@ const getQueueOptions = (): QueueOptions => {
   }
 
   return {
-    connection: getRedisConnectionOptions(),
+    connection: getRedisOptions(),
     defaultJobOptions: {
       attempts: 3,
       backoff: { type: 'exponential', delay: 2000 },

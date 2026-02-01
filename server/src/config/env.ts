@@ -9,9 +9,11 @@ const __dirname = path.dirname(__filename);
 const nodeEnv = process.env.NODE_ENV || 'development';
 const envFile = nodeEnv === 'production' ? '.env.production' : '.env.development';
 
-// Load environment-specific file first, then fallback to .env
-dotenv.config({ path: path.resolve(__dirname, '../../', envFile) });
-dotenv.config({ path: path.resolve(__dirname, '../../', '.env') }); // .env takes precedence if exists
+// Load environment files only when not in production to avoid leaking .env in production
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.resolve(__dirname, '../../', envFile) });
+  dotenv.config({ path: path.resolve(__dirname, '../../', '.env') }); // .env takes precedence if exists
+}
 
 interface EnvConfig {
   nodeEnv: string;
@@ -105,8 +107,8 @@ export const env: EnvConfig = {
   logLevel: process.env.LOG_LEVEL || 'info',
   redis: {
     ...(process.env.REDIS_URL && { url: process.env.REDIS_URL }),
-    host: process.env.REDIS_HOST || 'localhost',
-    port: parseInt(process.env.REDIS_PORT || '6379', 10),
+    host: process.env.REDIS_HOST || '',
+    port: parseInt(process.env.REDIS_PORT || '0', 10),
     ...(process.env.REDIS_PASSWORD && { password: process.env.REDIS_PASSWORD }),
   },
   storage: {

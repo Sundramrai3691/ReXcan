@@ -1,10 +1,13 @@
-import app from './app.js';
 import { env } from './config/env.js';
 import { database } from './config/database.js';
 import { logger } from './utils/logger.js';
 import { initializeStorage } from './config/storage.js';
-import { createClient } from 'redis';
-import { getRedisConnectionOptions } from './config/redis.js';
+import { validateExternalDepsOrExit } from './startup/validate.js';
+
+process.on('unhandledRejection', (err) => {
+  // eslint-disable-next-line no-console
+  console.error('UNHANDLED_REJECTION', err);
+});
 
 const startServer = async (): Promise<void> => {
   try {
@@ -14,17 +17,11 @@ const startServer = async (): Promise<void> => {
     // Connect to database
     await database.connect();
 
-    // Test Redis connectivity (ping) before starting server
-    try {
-      const client = createClient(getRedisConnectionOptions());
-      await client.connect();
-      await client.ping();
-      await client.quit();
-      logger.info('Redis ping successful');
-    } catch (err) {
-      logger.error('Redis ping failed:', err);
-      throw err;
-    }
+    // Validate external dependencies (Redis ping, etc.) before importing modules
+    await validateExternalDepsOrExit();
+
+    // Import app after validation to avoid modules instantiating queues/workers
+    const { default: app } = await import('./app.js');
 
     // Create and start server
     const expressApp = app();

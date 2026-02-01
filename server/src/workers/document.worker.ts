@@ -22,10 +22,10 @@ const getWorkerHostname = (url: string): string | undefined => {
 };
 
 // Worker configuration
-import { getRedisConnectionOptions } from '../config/redis.js';
+import { getRedisOptions } from '../infra/redis.js';
 
 const workerOptions = {
-  connection: getRedisConnectionOptions(),
+  connection: getRedisOptions(),
   concurrency: 5, // Process 5 jobs concurrently
   limiter: {
     max: 10, // Max 10 jobs
