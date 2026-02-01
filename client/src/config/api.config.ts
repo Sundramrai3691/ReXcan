@@ -1,12 +1,17 @@
 import axios from 'axios';
 import type { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios';
 
-// API base URL - adjust based on your environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api/v1';
+// API base URL - must be provided via Vite env variable
+let API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string) || '';
+API_BASE_URL = API_BASE_URL.replace(/\/$/, '');
+if (!API_BASE_URL) {
+  // eslint-disable-next-line no-console
+  console.error('VITE_API_BASE_URL is not defined. API requests will use relative paths.');
+}
 
 // Create axios instance
 const apiClient: AxiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: API_BASE_URL || undefined,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -47,7 +52,9 @@ apiClient.interceptors.response.use(
 
     // Handle network errors
     if (!error.response) {
-      console.error('Network error:', error.message);
+      const msg = error.message || 'Network error: unable to reach API';
+      console.error(msg);
+      error.message = msg;
     }
 
     return Promise.reject(error);

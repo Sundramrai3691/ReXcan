@@ -98,7 +98,7 @@ export const env: EnvConfig = {
     expire: process.env.JWT_EXPIRE || '7d',
   },
   cors: {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL || process.env.CORS_ORIGIN || '',
   },
   rateLimit: {
     windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10),
