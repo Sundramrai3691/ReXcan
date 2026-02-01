@@ -24,15 +24,8 @@ const getWorkerHostname = (url: string): string | undefined => {
 // Worker configuration
 const getWorkerConnection = () => {
   if (env.redis.url) {
-    const hostname = getWorkerHostname(env.redis.url);
-    return {
-      url: env.redis.url,
-      family: 4, // Force IPv4
-      enableReadyCheck: false,
-      maxRetriesPerRequest: null,
-      retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
-      ...(hostname && { tls: { servername: hostname } }), // TLS with SNI
-    };
+    // Use raw URL string so the Redis client handles TLS/SNI and ports
+    return env.redis.url as unknown as Record<string, unknown>;
   }
   return {
     host: env.redis.host,

@@ -55,28 +55,16 @@ const getHostnameFromUrl = (url: string): string | undefined => {
 // Create queue instances
 const getQueueOptions = (): QueueOptions => {
   if (env.redis.url) {
-    const hostname = getHostnameFromUrl(env.redis.url);
-
+    // Use raw URL string so the Redis client can handle TLS/SNI and ports
     return {
-      connection: {
-        host: hostname!,
-        port: 6380,
-        password: env.redis.url.split(":")[2].split("@")[0],
-        family: 4,
-        tls: {
-          servername: hostname!,
-        },
-        enableReadyCheck: false,
-        maxRetriesPerRequest: null,
-        retryStrategy: (times: number) => Math.min(times * 100, 2000),
-      },
+      connection: env.redis.url as unknown as Record<string, unknown>,
       defaultJobOptions: {
         attempts: 3,
         backoff: { type: 'exponential', delay: 2000 },
         removeOnComplete: { age: 86400, count: 1000 },
         removeOnFail: { age: 604800 },
       },
-    } as QueueOptions;
+    } as unknown as QueueOptions;
   }
 
   return {
