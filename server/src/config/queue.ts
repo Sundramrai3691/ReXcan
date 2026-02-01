@@ -15,20 +15,32 @@ export interface DocumentJobData {
   selectedModel?: string; // AI model: 'gemini', 'openai', 'groq', 'claude', 'rexcan', 'best'
 }
 
-interface QueueConfig {
-  connection: {
+type QueueConnectionOptions = {
+  family?: number;
+  enableReadyCheck?: boolean;
+  maxRetriesPerRequest?: number | null;
+  retryStrategy?: (times: number) => number;
+  tls?: { servername?: string };
+};
 
-    url?: string;
-    host?: string;
-    port?: number;
+type QueueConnStringReturn = {
+  connection: string;
+  connectionOptions?: QueueConnectionOptions;
+};
+
+type QueueConnObjReturn = {
+  connection: {
+    host: string;
+    port: number;
     password?: string;
     family?: number;
     enableReadyCheck?: boolean;
     maxRetriesPerRequest?: number | null;
     retryStrategy?: (times: number) => number;
-    tls?: { servername?: string };
   };
-}
+};
+
+type QueueConnectionReturn = QueueConnStringReturn | QueueConnObjReturn;
 
 const getHostnameFromUrl = (url: string): string | undefined => {
   try {
@@ -39,53 +51,49 @@ const getHostnameFromUrl = (url: string): string | undefined => {
   }
 };
 
-const getQueueConfig = (): QueueConfig => {
-  // Prefer REDIS_URL if available (handles TLS automatically)
+const getQueueConnection = (): QueueConnectionReturn => {
   if (env.redis.url) {
     const hostname = getHostnameFromUrl(env.redis.url);
+
     return {
-      connection: {
-        url: env.redis.url,
-        family: 4, // Force IPv4
+      connection: env.redis.url,
+      connectionOptions: {
+        family: 4,
         enableReadyCheck: false,
         maxRetriesPerRequest: null,
-        retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
-        ...(hostname && { tls: { servername: hostname } }), // TLS with SNI
+        retryStrategy: (times: number) => Math.min(times * 100, 2000),
+        ...(hostname && { tls: { servername: hostname } }),
       },
     };
   }
-  
-  // Fallback to host/port configuration
+
   return {
     connection: {
       host: env.redis.host,
       port: env.redis.port,
-      family: 4, // Force IPv4
+      password: env.redis.password,
+      family: 4,
       enableReadyCheck: false,
       maxRetriesPerRequest: null,
-      retryStrategy: (times: number) => Math.min(times * 50, 2000), // Exponential backoff, max 2s
-      ...(env.redis.password && { password: env.redis.password }),
+      retryStrategy: (times: number) => Math.min(times * 100, 2000),
     },
   };
 };
 // Create queue instances
+const redisConn = getQueueConnection();
+
 export const documentProcessingQueue = new Queue<DocumentJobData>(
   QueueName.DOCUMENT_PROCESSING,
   {
-    connection: getQueueConfig().connection,
+    ...(typeof redisConn.connection === 'string'
+      ? { connection: redisConn.connection, connectionOptions: (redisConn as QueueConnStringReturn).connectionOptions }
+      : { connection: (redisConn as QueueConnObjReturn).connection }),
+
     defaultJobOptions: {
       attempts: 3,
-      backoff: {
-        type: 'exponential',
-        delay: 2000,
-      },
-      removeOnComplete: {
-        age: 24 * 3600, // Keep completed jobs for 24 hours
-        count: 1000, // Keep max 1000 completed jobs
-      },
-      removeOnFail: {
-        age: 7 * 24 * 3600, // Keep failed jobs for 7 days
-      },
+      backoff: { type: 'exponential', delay: 2000 },
+      removeOnComplete: { age: 86400, count: 1000 },
+      removeOnFail: { age: 604800 },
     },
   }
 );
