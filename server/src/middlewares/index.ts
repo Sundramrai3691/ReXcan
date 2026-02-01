@@ -11,28 +11,38 @@ export const setupMiddlewares = (app: Express): void => {
   app.use(helmet());
 
   // CORS configuration
-  app.use(
-    cors({
-      origin: (origin, callback) => {
-        // In development, allow any localhost origin
-        if (env.nodeEnv === 'development') {
-          if (!origin || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
-            callback(null, true);
-            return;
-          }
-        }
-        
-        // In production, use configured origin
-        const allowedOrigins = env.cors.origin.split(',').map(o => o.trim());
-        if (!origin || allowedOrigins.includes(origin)) {
+  const corsOptions = {
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+      // In development, allow any localhost origin
+      if (env.nodeEnv === 'development') {
+        if (!origin || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
           callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
+          return;
         }
-      },
-      credentials: true,
-    })
-  );
+      }
+
+      // In production, use configured origin(s)
+      const allowedRaw = env.cors.origin || '';
+      const allowedOrigins = allowedRaw.split(',').map((o) => o.trim()).filter(Boolean);
+
+      // Allow wildcard
+      if (allowedOrigins.includes('*')) {
+        callback(null, true);
+        return;
+      }
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  };
+
+  app.use(cors(corsOptions));
+  // Ensure preflight (OPTIONS) requests are handled with the same CORS rules
+  app.options('*', cors(corsOptions));
 
   // Body parsing middleware
   app.use(express.json({ limit: '10mb' }));
