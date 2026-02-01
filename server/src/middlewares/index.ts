@@ -25,6 +25,12 @@ export const setupMiddlewares = (app: Express): void => {
       const allowedRaw = env.cors.origin || '';
       const allowedOrigins = allowedRaw.split(',').map((o) => o.trim()).filter(Boolean);
 
+      // If no origins configured, allow all (useful for cloud deployments where env isn't set)
+      if (allowedOrigins.length === 0) {
+        callback(null, true);
+        return;
+      }
+
       // Allow wildcard
       if (allowedOrigins.includes('*')) {
         callback(null, true);
