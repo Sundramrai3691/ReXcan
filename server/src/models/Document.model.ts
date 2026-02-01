@@ -188,7 +188,7 @@ const documentSchema = new Schema<IDocument>(
   {
     timestamps: true,
     toJSON: {
-      transform: (_doc: unknown, ret: Record<string, unknown>) => {
+      transform: (_doc: any, ret: any) => {
         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete ret.__v;
         // Transform _id to id for frontend compatibility

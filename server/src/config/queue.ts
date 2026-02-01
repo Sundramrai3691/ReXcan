@@ -6,6 +6,15 @@ export enum QueueName {
   DOCUMENT_PROCESSING = 'document-processing',
 }
 
+export interface DocumentJobData {
+  documentId: string;
+  userId: string;
+  filePath: string;
+  fileType: 'pdf' | 'image';
+  fileName: string;
+  selectedModel?: string; // AI model: 'gemini', 'openai', 'groq', 'claude', 'rexcan', 'best'
+}
+
 interface QueueConfig {
   connection: {
     host: string;
@@ -47,23 +56,23 @@ export const documentProcessingQueue = new Queue<DocumentJobData>(
 );
 
 // Queue event listeners
-documentProcessingQueue.on('error', (error) => {
+documentProcessingQueue.on('error', (error: any) => {
   logger.error('Queue error:', error);
 });
 
-documentProcessingQueue.on('waiting', (job) => {
+documentProcessingQueue.on('waiting', (job: any) => {
   logger.info(`Job ${job.id} is waiting`);
 });
 
-documentProcessingQueue.on('active', (job) => {
+documentProcessingQueue.on('active', (job: any) => {
   logger.info(`Job ${job.id} is now active`);
 });
 
-documentProcessingQueue.on('completed', (job) => {
+documentProcessingQueue.on('completed', (job: any) => {
   logger.info(`Job ${job.id} has completed`);
 });
 
-documentProcessingQueue.on('failed', (job, err) => {
+documentProcessingQueue.on('failed', (job: any, err: any) => {
   logger.error(`Job ${job?.id} has failed:`, err);
 });
 

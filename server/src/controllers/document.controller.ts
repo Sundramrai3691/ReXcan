@@ -23,7 +23,10 @@ export const uploadDocument = asyncHandler(
     const file = req.file;
 
     // Get selected model from request body or query, default to 'best'
-    const selectedModel = (req.body.model || req.query.model || 'best') as string;
+    const _selectedModelCandidate = req.body.model || req.query.model || 'best';
+    const selectedModel = Array.isArray(_selectedModelCandidate)
+      ? _selectedModelCandidate[0]
+      : (_selectedModelCandidate as string);
 
     // Validate model
     const validModels = ['gemini', 'openai', 'groq', 'claude', 'rexcan', 'best'];
@@ -75,8 +78,10 @@ export const getDocuments = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const limit = parseInt(req.query.limit as string) || 50;
-    const skip = parseInt(req.query.skip as string) || 0;
+    const limitStr = Array.isArray(req.query.limit) ? req.query.limit[0] : (req.query.limit as string | undefined);
+    const skipStr = Array.isArray(req.query.skip) ? req.query.skip[0] : (req.query.skip as string | undefined);
+    const limit = parseInt(limitStr || '50', 10) || 50;
+    const skip = parseInt(skipStr || '0', 10) || 0;
 
     const { documents, total } = await getUserDocuments(userId, limit, skip);
 
@@ -222,7 +227,10 @@ export const uploadDocumentsBatch = asyncHandler(
     const batchId = randomUUID();
 
     // Get selected model from request body or query, default to 'best'
-    const selectedModel = (req.body.model || req.query.model || 'best') as string;
+    const _selectedModelCandidate = req.body.model || req.query.model || 'best';
+    const selectedModel = Array.isArray(_selectedModelCandidate)
+      ? _selectedModelCandidate[0]
+      : (_selectedModelCandidate as string);
 
     // Validate model
     const validModels = ['gemini', 'openai', 'groq', 'claude', 'rexcan', 'best'];

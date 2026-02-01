@@ -141,7 +141,9 @@ export const getJobStatus = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const { pythonJobId } = req.query;
+    const pythonJobId = Array.isArray(req.query.pythonJobId)
+      ? req.query.pythonJobId[0]
+      : (req.query.pythonJobId as string | undefined);
 
     if (!pythonJobId || typeof pythonJobId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Python job ID is required');
@@ -231,9 +233,15 @@ export const exportCSV = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { documentId } = req.query;
-    const erpType = (req.query.erp_type as string) || 'quickbooks';
-    const skipSafetyCheck = req.query.skip_safety_check === 'true';
+    const documentId = Array.isArray(req.query.documentId)
+      ? req.query.documentId[0]
+      : (req.query.documentId as string | undefined);
+    const erpType = Array.isArray(req.query.erp_type)
+      ? req.query.erp_type[0]
+      : ((req.query.erp_type as string) || 'quickbooks');
+    const skipSafetyCheck = (Array.isArray(req.query.skip_safety_check)
+      ? req.query.skip_safety_check[0]
+      : req.query.skip_safety_check) === 'true';
 
     if (!documentId || typeof documentId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -297,7 +305,9 @@ export const exportJSON = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { documentId } = req.query;
+    const documentId = Array.isArray(req.query.documentId)
+      ? req.query.documentId[0]
+      : (req.query.documentId as string | undefined);
 
     if (!documentId || typeof documentId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -481,7 +491,8 @@ export const getReviewQueue = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const limit = parseInt((req.query.limit as string) || '20', 10);
+    const limitStr = Array.isArray(req.query.limit) ? req.query.limit[0] : (req.query.limit as string | undefined);
+    const limit = parseInt(limitStr || '20', 10) || 20;
 
     try {
       const reviewQueue = await pythonAPIService.getReviewQueue(limit);

@@ -16,7 +16,8 @@ export const fetchAndPublishEmails = asyncHandler(
     }
 
     const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const maxResults = parseInt((req.query.maxResults as string) || '10', 10);
+    const maxResultsStr = Array.isArray(req.query.maxResults) ? req.query.maxResults[0] : (req.query.maxResults as string | undefined);
+    const maxResults = parseInt(maxResultsStr || '10', 10) || 10;
 
     try {
       // Check if email service is initialized
