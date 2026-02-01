@@ -1,64 +1,68 @@
 """OCR engine wrappers for EasyOCR and Tesseract."""
-import easyocr
 import pytesseract
 import numpy as np
 from typing import List, Tuple, Optional
 from pathlib import Path
-import cv2
 import os
 from app.models import OCRBlock
+
+# Feature flag for EasyOCR
+USE_EASYOCR = os.getenv("USE_EASYOCR", "false").lower() == "true"
+
+# Lazy-loaded EasyOCR reader
+_easyocr_reader = None
+
+def get_easyocr_reader():
+    """Lazy-load EasyOCR reader on first use."""
+    global _easyocr_reader
+    if _easyocr_reader is None:
+        try:
+            # Try to fix SSL context for EasyOCR model download
+            try:
+                import certifi
+                os.environ['SSL_CERT_FILE'] = certifi.where()
+            except ImportError:
+                pass
+            
+            import easyocr
+            import sys
+            import contextlib
+            
+            @contextlib.contextmanager
+            def suppress_stderr():
+                with open(os.devnull, 'w') as devnull:
+                    old_stderr = sys.stderr
+                    sys.stderr = devnull
+                    try:
+                        yield
+                    finally:
+                        sys.stderr = old_stderr
+            
+            with suppress_stderr():
+                _easyocr_reader = easyocr.Reader(['en'], gpu=False, verbose=False)
+        except Exception as e:
+            # Silent fail - Tesseract will handle OCR
+            _easyocr_reader = None
+    
+    return _easyocr_reader
 
 
 class OCREngine:
     """Unified OCR engine wrapper."""
     
-    def __init__(self, use_easyocr: bool = True, use_tesseract: bool = True):
+    def __init__(self, use_easyocr: bool = None, use_tesseract: bool = True):
         """Initialize OCR engines.
         
         Args:
-            use_easyocr: Whether to use EasyOCR
+            use_easyocr: Whether to use EasyOCR (defaults to USE_EASYOCR env var)
             use_tesseract: Whether to use Tesseract
         """
-        self.easyocr_reader = None
+        # Use feature flag if not explicitly set
+        if use_easyocr is None:
+            use_easyocr = USE_EASYOCR
+        
         self.use_easyocr = use_easyocr
         self.use_tesseract = use_tesseract
-        
-        if use_easyocr:
-            try:
-                # Try to fix SSL context for EasyOCR model download
-                try:
-                    import certifi
-                    os.environ['SSL_CERT_FILE'] = certifi.where()
-                except ImportError:
-                    pass
-                
-                # Initialize EasyOCR (English only for speed)
-                # Suppress verbose output during initialization
-                import sys
-                import contextlib
-                
-                @contextlib.contextmanager
-                def suppress_stderr():
-                    with open(os.devnull, 'w') as devnull:
-                        old_stderr = sys.stderr
-                        sys.stderr = devnull
-                        try:
-                            yield
-                        finally:
-                            sys.stderr = old_stderr
-                
-                # Try to initialize EasyOCR (may take time to download models)
-                # Note: This may take a while on first run as it downloads models
-                # We suppress stderr to hide "Downloading detection model" messages
-                with suppress_stderr():
-                    self.easyocr_reader = easyocr.Reader(['en'], gpu=False, verbose=False)
-            except Exception as e:
-                # Suppress SSL certificate warnings - Tesseract will be used as fallback
-                error_str = str(e).lower()
-                if 'ssl' not in error_str and 'certificate' not in error_str:
-                    # Only show non-SSL errors
-                    pass  # Silent fail - Tesseract will handle OCR
-                self.use_easyocr = False
         
         if use_tesseract:
             try:
@@ -79,14 +83,19 @@ class OCREngine:
         Returns:
             List of OCRBlock objects
         """
-        if not self.use_easyocr or self.easyocr_reader is None:
+        if not self.use_easyocr:
+            return []
+        
+        # Lazy-load EasyOCR on first use
+        reader = get_easyocr_reader()
+        if reader is None:
             return []
         
         try:
             # Optimized settings for speed and accuracy
             # paragraph=False: faster, width_ths/height_ths: less strict grouping
             # batch_size=1: process one at a time (faster for single images)
-            results = self.easyocr_reader.readtext(
+            results = reader.readtext(
                 image,
                 paragraph=False,  # Faster processing
                 width_ths=0.7,  # Slightly more strict for better grouping

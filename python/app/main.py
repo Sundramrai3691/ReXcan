@@ -20,7 +20,6 @@ from app.utils import (
     load_json, save_json, ensure_dir, get_project_root, timeit
 )
 from app.extract_text import extract_text
-from app.ocr_engine import OCREngine
 from app.heuristics import (
     extract_invoice_id, extract_date, extract_total_amount,
     extract_currency, extract_vendor_name
@@ -55,7 +54,6 @@ uploads_dir = ensure_dir(get_project_root() / "uploads")
 app.mount("/uploads", StaticFiles(directory=str(uploads_dir)), name="uploads")
 
 # Global instances
-ocr_engine = OCREngine()
 llm_router = LLMRouter()
 vendor_canonicalizer = VendorCanonicalizer()
 audit_logger = AuditLogger()
