@@ -2,6 +2,7 @@ import { Queue } from 'bullmq';
 import { env } from './env.js';
 import { logger } from '../utils/logger.js';
 
+import type { QueueOptions } from 'bullmq';
 export enum QueueName {
   DOCUMENT_PROCESSING = 'document-processing',
 }
@@ -51,20 +52,31 @@ const getHostnameFromUrl = (url: string): string | undefined => {
   }
 };
 
-const getQueueConnection = (): QueueConnectionReturn => {
+// Create queue instances
+const getQueueOptions = (): QueueOptions => {
   if (env.redis.url) {
     const hostname = getHostnameFromUrl(env.redis.url);
 
     return {
-      connection: env.redis.url,
-      connectionOptions: {
+      connection: {
+        host: hostname!,
+        port: 6380,
+        password: env.redis.url.split(":")[2].split("@")[0],
         family: 4,
+        tls: {
+          servername: hostname!,
+        },
         enableReadyCheck: false,
         maxRetriesPerRequest: null,
         retryStrategy: (times: number) => Math.min(times * 100, 2000),
-        ...(hostname && { tls: { servername: hostname } }),
       },
-    };
+      defaultJobOptions: {
+        attempts: 3,
+        backoff: { type: 'exponential', delay: 2000 },
+        removeOnComplete: { age: 86400, count: 1000 },
+        removeOnFail: { age: 604800 },
+      },
+    } as QueueOptions;
   }
 
   return {
@@ -77,25 +89,18 @@ const getQueueConnection = (): QueueConnectionReturn => {
       maxRetriesPerRequest: null,
       retryStrategy: (times: number) => Math.min(times * 100, 2000),
     },
-  };
-};
-// Create queue instances
-const redisConn = getQueueConnection();
-
-export const documentProcessingQueue = new Queue<DocumentJobData>(
-  QueueName.DOCUMENT_PROCESSING,
-  {
-    ...(typeof redisConn.connection === 'string'
-      ? { connection: redisConn.connection, connectionOptions: (redisConn as QueueConnStringReturn).connectionOptions }
-      : { connection: (redisConn as QueueConnObjReturn).connection }),
-
     defaultJobOptions: {
       attempts: 3,
       backoff: { type: 'exponential', delay: 2000 },
       removeOnComplete: { age: 86400, count: 1000 },
       removeOnFail: { age: 604800 },
     },
-  }
+  } as QueueOptions;
+};
+
+export const documentProcessingQueue = new Queue<DocumentJobData>(
+  QueueName.DOCUMENT_PROCESSING,
+  getQueueOptions()
 );
 
 // Queue event listeners
@@ -122,9 +127,13 @@ documentProcessingQueue.on('failed' as any, (job: any, err: any) => {
 /* DocumentJobData is declared above */
 
 export const addDocumentToQueue = async (data: DocumentJobData): Promise<string> => {
-  const job = await documentProcessingQueue.add('process-document', data, {
-    jobId: `doc-${data.documentId}`,
-  });
+  const job = await documentProcessingQueue.add(
+    'process-document' as const,
+    data,
+    {
+      jobId: `doc-${data.documentId}`,
+    }
+  );
   logger.info(`Document ${data.documentId} added to queue with job ID: ${job.id}`);
   return job.id!;
 };
