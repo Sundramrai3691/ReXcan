@@ -58,8 +58,8 @@ export const runOCR = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { documentId } = req.body;
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const { documentId } = req.body as { documentId?: string };
 
     if (!documentId) {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -100,8 +100,8 @@ export const processInvoice = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { documentId } = req.body;
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const { documentId } = req.body as { documentId?: string };
 
     if (!documentId) {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -142,7 +142,7 @@ export const getJobStatus = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const pythonJobId = asString(req.query.pythonJobId);
+    const pythonJobId = asString((req.query as Record<string, string | string[] | undefined>).pythonJobId);
 
     if (!pythonJobId || typeof pythonJobId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Python job ID is required');
@@ -177,8 +177,8 @@ export const verifyCorrections = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const { documentId, corrections, autoPromote } = req.body;
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const { documentId, corrections, autoPromote } = req.body as { documentId?: string; corrections?: any; autoPromote?: boolean };
 
     if (!documentId) {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -231,10 +231,10 @@ export const exportCSV = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const documentId = asString(req.query.documentId);
-    const erpType = asString(req.query.erp_type) || 'quickbooks';
-    const skipSafetyCheck = asString(req.query.skip_safety_check) === 'true';
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const documentId = asString((req.query as Record<string, string | string[] | undefined>).documentId);
+    const erpType = asString((req.query as Record<string, string | string[] | undefined>).erp_type) || 'quickbooks';
+    const skipSafetyCheck = asString((req.query as Record<string, string | string[] | undefined>).skip_safety_check) === 'true';
 
     if (!documentId || typeof documentId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -297,8 +297,8 @@ export const exportJSON = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const documentId = asString(req.query.documentId);
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const documentId = asString((req.query as Record<string, string | string[] | undefined>).documentId);
 
     if (!documentId || typeof documentId !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Document ID is required');
@@ -483,7 +483,8 @@ export const getReviewQueue = asyncHandler(
     }
 
     // Normalize query param to string to satisfy TypeScript (string | ParsedQs -> string)
-    const limitStr = Array.isArray(req.query.limit) ? req.query.limit[0] : String(req.query.limit);
+    const limitParam = (req.query as Record<string, string | string[] | undefined>).limit;
+    const limitStr = Array.isArray(limitParam) ? limitParam[0] : String(limitParam || '20');
     const limit = parseInt(limitStr || '20', 10) || 20;
 
     try {
@@ -508,9 +509,9 @@ export const applyReviewCorrections = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const id = asString(req.params.id);
-    const { corrections, autoPromote } = req.body;
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const id = asString((req.params as Record<string, string | string[]>).id);
+    const { corrections, autoPromote } = req.body as { corrections?: any; autoPromote?: boolean };
 
     if (!corrections || typeof corrections !== 'object') {
       return ApiResponseHelper.badRequest(res, 'Corrections object is required');
@@ -544,8 +545,8 @@ export const rollbackCorrections = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const id = asString(req.params.id);
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const id = asString((req.params as Record<string, string | string[]>).id);
 
     try {
       const rollbackResponse = await pythonAPIService.rollbackCorrections(id, userId);
@@ -569,8 +570,8 @@ export const getAuditLog = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const id = asString(req.params.id);
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const id = asString((req.params as Record<string, string | string[]>).id);
 
     // Get document to verify ownership
     const document = await getDocumentById(id, userId);
@@ -607,7 +608,7 @@ export const promoteVendor = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const { vendorName, canonicalId } = req.body;
+    const { vendorName, canonicalId } = req.body as { vendorName?: string; canonicalId?: string };
 
     if (!vendorName || typeof vendorName !== 'string') {
       return ApiResponseHelper.badRequest(res, 'Vendor name is required');
@@ -635,8 +636,8 @@ export const serveUploadedFile = asyncHandler(
       return ApiResponseHelper.unauthorized(res, 'User not authenticated');
     }
 
-    const userId = (req.user as { _id: { toString: () => string } })._id.toString();
-    const filename = asString(req.params.filename);
+    const userId = (req.user as unknown as { _id: { toString: () => string } })._id.toString();
+    const filename = asString((req.params as Record<string, string | string[]>).filename);
 
     // Security: Prevent path traversal
     if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {

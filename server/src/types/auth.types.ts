@@ -2,7 +2,7 @@ import { Request } from 'express';
 import { IUser } from '../models/User.model.js';
 
 // Extend Express Request to include user
-export interface AuthRequest extends Request {
+export interface AuthRequest extends Request<any, any, any, any> {
   user?: IUser;
 }
 
