@@ -6,6 +6,7 @@
  */
 
 import apiClient from '../config/api.config';
+import axios from 'axios';
 
 // Types
 export interface OCRResponse {
@@ -131,10 +132,109 @@ export interface VendorPromoteResponse {
   message: string;
 }
 
+export type UploadedInvoiceStatusValue = 'queued' | 'processing' | 'done' | 'failed';
+
+export interface UploadedInvoiceResponse {
+  invoice_id: string;
+  job_id: string;
+  filename: string;
+  status: UploadedInvoiceStatusValue;
+  status_url: string;
+  result_url: string;
+}
+
+export interface UploadedInvoiceStatus {
+  invoice_id: string;
+  job_id: string;
+  status: UploadedInvoiceStatusValue;
+  has_result: boolean;
+  error?: string | null;
+  logs: Array<{ timestamp: number; message: string; level: string }>;
+}
+
+export interface UploadedInvoiceResult {
+  invoice_id: string;
+  job_id: string;
+  status: 'done';
+  result: InvoiceExtract;
+}
+
+const getPdfUploadApiBaseUrl = () => {
+  const configured = (import.meta.env.VITE_PDF_UPLOAD_API_BASE_URL as string | undefined) || 'http://localhost:8000';
+  return configured.replace(/\/$/, '');
+};
+
 /**
  * Invoice Processing API Service
  */
 class InvoiceAPI {
+  /**
+   * Upload a PDF directly to the FastAPI async invoice pipeline.
+   */
+  async uploadInvoicePdf(
+    file: File,
+    onUploadProgress?: (progress: number) => void
+  ): Promise<UploadedInvoiceResponse> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await axios.post<UploadedInvoiceResponse>(
+      `${getPdfUploadApiBaseUrl()}/api/invoices/upload`,
+      formData,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total && onUploadProgress) {
+            onUploadProgress(Math.round((progressEvent.loaded * 100) / progressEvent.total));
+          }
+        },
+      }
+    );
+    return response.data;
+  }
+
+  /**
+   * Poll status for a FastAPI PDF upload job.
+   */
+  async getUploadedInvoiceStatus(jobId: string): Promise<UploadedInvoiceStatus> {
+    const response = await axios.get<UploadedInvoiceStatus>(
+      `${getPdfUploadApiBaseUrl()}/api/invoices/${jobId}/status`
+    );
+    return response.data;
+  }
+
+  /**
+   * Fetch completed extraction result for a FastAPI PDF upload job.
+   */
+  async getUploadedInvoiceResult(jobId: string): Promise<UploadedInvoiceResult> {
+    const response = await axios.get<UploadedInvoiceResult>(
+      `${getPdfUploadApiBaseUrl()}/api/invoices/${jobId}/result`
+    );
+    return response.data;
+  }
+
+  /**
+   * Apply corrections directly against a FastAPI job ID.
+   */
+  async verifyPythonJobCorrections(
+    jobId: string,
+    corrections: Record<string, any>,
+    autoPromote: boolean = false
+  ): Promise<VerifyResponse> {
+    const response = await axios.post<VerifyResponse>(
+      `${getPdfUploadApiBaseUrl()}/verify`,
+      {
+        job_id: jobId,
+        corrections,
+        user_id: 'browser',
+      },
+      {
+        params: { auto_promote: autoPromote },
+      }
+    );
+    return response.data;
+  }
+
   /**
    * Run OCR only on a document
    */

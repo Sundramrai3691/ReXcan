@@ -461,6 +461,17 @@ curl http://localhost:3000/health
 - ✅ **Export**: JSON & CSV export with ERP-specific formats
 - ✅ **Learning System**: Captures patterns from manual corrections
 
+### PDF Upload
+
+- Users can upload real invoice PDFs through the React review interface.
+- `POST /api/invoices/upload` accepts a multipart `file` field, validates PDF extension, MIME type, PDF magic bytes, empty/corrupt files, and upload size.
+- Uploads are stored temporarily with UUID-based filenames, processed asynchronously through the existing `pdfplumber -> EasyOCR -> Tesseract` extraction chain, then deleted after processing.
+- Clients poll `GET /api/invoices/{id}/status` for `queued`, `processing`, `done`, or `failed`, then fetch extracted JSON from `GET /api/invoices/{id}/result`.
+- Optional env vars:
+  - `REXCAN_MAX_UPLOAD_MB` - max PDF upload size, defaults to `10`.
+  - `REXCAN_UPLOAD_TMP_DIR` - temp upload directory, defaults to `python/tmp/invoice_uploads`.
+  - `VITE_PDF_UPLOAD_API_BASE_URL` - FastAPI base URL for the React uploader, defaults to `http://localhost:8000`.
+
 ### Performance Metrics
 
 - **Processing Speed**: 5-20 seconds per invoice
@@ -476,6 +487,9 @@ curl http://localhost:3000/health
 ### Python FastAPI (Port 8000)
 
 - `GET /health` - Health check
+- `POST /api/invoices/upload` - Upload a PDF invoice and enqueue async processing
+- `GET /api/invoices/{id}/status` - Poll PDF upload processing status
+- `GET /api/invoices/{id}/result` - Fetch extracted result JSON for a completed upload
 - `POST /upload` - Upload invoice file
 - `POST /ocr?jobId=<id>` - Run OCR extraction only
 - `POST /process?jobId=<id>` - Run full processing pipeline
@@ -511,6 +525,10 @@ python test_full_pipeline.py
 
 # Node.js tests
 cd server
+npm test
+
+# Frontend tests
+cd ../client
 npm test
 ```
 

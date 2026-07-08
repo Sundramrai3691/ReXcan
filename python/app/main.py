@@ -7,7 +7,7 @@ from typing import Dict, List, Optional, Any
 import csv
 import io
 
-from fastapi import FastAPI, UploadFile, File, Query, HTTPException
+from fastapi import FastAPI, UploadFile, File, Query, HTTPException, BackgroundTasks
 from fastapi.responses import FileResponse, StreamingResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -57,6 +57,7 @@ app.mount("/uploads", StaticFiles(directory=str(uploads_dir)), name="uploads")
 llm_router = LLMRouter()
 vendor_canonicalizer = VendorCanonicalizer()
 audit_logger = AuditLogger()
+ocr_engine = None
 
 # In-memory storage for job state (use database in production)
 job_storage: Dict[str, Dict] = {}
@@ -71,11 +72,183 @@ metrics_storage: Dict[str, any] = {
     "correction_count": 0,
 }
 
+PDF_MIME_TYPES = {"application/pdf", "application/x-pdf"}
+
+
+def get_pdf_upload_temp_dir() -> Path:
+    """Return the temp directory used for API PDF uploads."""
+    configured = os.getenv("REXCAN_UPLOAD_TMP_DIR")
+    base_dir = Path(configured) if configured else get_project_root() / "tmp" / "invoice_uploads"
+    return ensure_dir(base_dir)
+
+
+def get_max_pdf_upload_bytes() -> int:
+    """Return max upload size in bytes."""
+    max_mb = int(os.getenv("REXCAN_MAX_UPLOAD_MB", "10"))
+    return max_mb * 1024 * 1024
+
+
+def sanitize_display_filename(filename: Optional[str]) -> str:
+    """Keep the original name display-safe without using it for storage."""
+    if not filename:
+        return "invoice.pdf"
+    return get_safety_guard().sanitize_filename(filename)
+
+
+def validate_pdf_upload(file: UploadFile, content: bytes) -> str:
+    """Validate an uploaded invoice PDF using extension, MIME, and PDF bytes."""
+    display_filename = sanitize_display_filename(file.filename)
+    suffix = Path(display_filename).suffix.lower()
+    max_bytes = get_max_pdf_upload_bytes()
+
+    if not content:
+        raise HTTPException(status_code=400, detail="Uploaded PDF is empty")
+    if len(content) > max_bytes:
+        max_mb = max_bytes / 1024 / 1024
+        raise HTTPException(status_code=413, detail=f"PDF exceeds the {max_mb:.0f}MB upload limit")
+    if suffix != ".pdf":
+        raise HTTPException(status_code=400, detail="Only .pdf invoice files are supported")
+    if file.content_type not in PDF_MIME_TYPES:
+        raise HTTPException(status_code=400, detail="Uploaded file MIME type must be application/pdf")
+    if not content.startswith(b"%PDF-"):
+        raise HTTPException(status_code=400, detail="Uploaded file is not a valid PDF")
+    if b"%%EOF" not in content[-2048:]:
+        raise HTTPException(status_code=400, detail="Uploaded PDF appears to be corrupt")
+
+    return display_filename
+
+
+async def process_uploaded_invoice_job(job_id: str) -> None:
+    """Run full extraction for an uploaded PDF and clean up the temp file."""
+    job = job_storage.get(job_id)
+    if not job:
+        return
+
+    job["status"] = "processing"
+    job["updated_at"] = time.time()
+    try:
+        await process_invoice(job_id=job_id)
+        job["status"] = "done"
+        job["updated_at"] = time.time()
+    except Exception as exc:
+        job["status"] = "failed"
+        job["error"] = str(exc)
+        job["updated_at"] = time.time()
+        if "logs" not in job:
+            job["logs"] = []
+        job["logs"].append({
+            "timestamp": time.time(),
+            "message": f"Processing failed: {exc}",
+            "level": "error"
+        })
+    finally:
+        temp_path = Path(job.get("file_path", ""))
+        if temp_path.exists():
+            # Uploaded invoices are deleted after processing to control storage cost
+            # and reduce security exposure; user uploads are a common attack surface
+            # if retained on disk indefinitely.
+            try:
+                temp_path.unlink()
+            except OSError:
+                pass
+
 
 @app.get("/health")
 async def health():
     """Health check endpoint."""
     return {"status": "ok", "service": "InvoiceAce"}
+
+
+@app.post("/api/invoices/upload")
+async def upload_invoice_pdf(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
+    """Upload a real invoice PDF and enqueue async OCR/extraction processing."""
+    content = await file.read()
+    display_filename = validate_pdf_upload(file, content)
+
+    job_id = str(uuid.uuid4())
+    temp_file_path = get_pdf_upload_temp_dir() / f"{job_id}.pdf"
+    with open(temp_file_path, "wb") as f:
+        f.write(content)
+
+    job_storage[job_id] = {
+        "job_id": job_id,
+        "filename": display_filename,
+        "safe_filename": temp_file_path.name,
+        "file_path": str(temp_file_path),
+        "file_size": len(content),
+        "status": "queued",
+        "created_at": time.time(),
+        "updated_at": time.time(),
+        "logs": [{
+            "timestamp": time.time(),
+            "message": "PDF upload accepted and queued for processing",
+            "level": "info"
+        }],
+    }
+
+    background_tasks.add_task(process_uploaded_invoice_job, job_id)
+
+    return {
+        "invoice_id": job_id,
+        "job_id": job_id,
+        "filename": display_filename,
+        "status": "queued",
+        "status_url": f"/api/invoices/{job_id}/status",
+        "result_url": f"/api/invoices/{job_id}/result",
+    }
+
+
+@app.get("/api/invoices/{job_id}/status")
+async def get_invoice_upload_status(job_id: str):
+    """Return async PDF upload processing status."""
+    if job_id not in job_storage:
+        output_path = get_output_path(job_id, "json")
+        if output_path.exists():
+            return {
+                "invoice_id": job_id,
+                "job_id": job_id,
+                "status": "done",
+                "has_result": True,
+                "error": None,
+                "logs": [],
+            }
+        raise HTTPException(status_code=404, detail="Invoice job not found")
+
+    job = job_storage[job_id]
+    return {
+        "invoice_id": job_id,
+        "job_id": job_id,
+        "status": job.get("status", "unknown"),
+        "has_result": "result" in job or get_output_path(job_id, "json").exists(),
+        "error": job.get("error"),
+        "logs": job.get("logs", []),
+    }
+
+
+@app.get("/api/invoices/{job_id}/result")
+async def get_invoice_upload_result(job_id: str):
+    """Return the extracted invoice JSON for a completed PDF upload job."""
+    result = None
+    if job_id in job_storage:
+        job = job_storage[job_id]
+        if job.get("status") == "failed":
+            raise HTTPException(status_code=422, detail=job.get("error", "Invoice processing failed"))
+        result = job.get("result")
+
+    if result is None:
+        output_path = get_output_path(job_id, "json")
+        if output_path.exists():
+            result = load_json(output_path)
+
+    if result is None:
+        raise HTTPException(status_code=404, detail="Invoice result is not ready")
+
+    return {
+        "invoice_id": job_id,
+        "job_id": job_id,
+        "status": "done",
+        "result": result,
+    }
 
 
 @app.post("/upload", response_model=UploadResponse)

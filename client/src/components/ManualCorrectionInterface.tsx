@@ -14,6 +14,7 @@ interface ManualCorrectionInterfaceProps {
   invoiceData: InvoiceExtract;
   onSave?: (correctedData: InvoiceExtract) => void;
   onCancel?: () => void;
+  usePythonJobId?: boolean;
 }
 
 const ManualCorrectionInterface = ({
@@ -21,6 +22,7 @@ const ManualCorrectionInterface = ({
   invoiceData,
   onSave,
   onCancel,
+  usePythonJobId = false,
 }: ManualCorrectionInterfaceProps) => {
   const [corrections, setCorrections] = useState<Record<string, any>>({});
   const [saving, setSaving] = useState(false);
@@ -41,11 +43,13 @@ const ManualCorrectionInterface = ({
 
     try {
       setSaving(true);
-      const response = await invoiceAPI.verifyCorrections({
-        documentId,
-        corrections,
-        autoPromote,
-      });
+      const response = usePythonJobId
+        ? await invoiceAPI.verifyPythonJobCorrections(documentId, corrections, autoPromote)
+        : await invoiceAPI.verifyCorrections({
+            documentId,
+            corrections,
+            autoPromote,
+          });
       onSave?.(response.result);
     } catch (error) {
       console.error("Failed to save corrections:", error);

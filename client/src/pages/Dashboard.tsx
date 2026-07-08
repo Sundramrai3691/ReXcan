@@ -3,6 +3,7 @@ import { useState } from 'react';
 import DocumentDetailsModal from '@/components/DocumentDetailsModal';
 import DocumentsList from '@/components/DocumentsList';
 import FileUpload from '@/components/FileUpload';
+import PdfInvoiceUpload from '@/components/PdfInvoiceUpload';
 import ProcessingStatusLog from '@/components/ProcessingStatusLog';
 import BatchProcessingStatus from '@/components/BatchProcessingStatus';
 import { documentAPI } from '@/services/document.api';
@@ -137,6 +138,18 @@ const Dashboard = () => {
 
           {/* Upload Section - Material Design 3 Card */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200/60 p-6 sm:p-8 mb-6 transition-shadow hover:shadow-md">
+            <div className="mb-8 border-b border-gray-200 pb-8">
+              <div className="mb-5">
+                <h2 className="text-xl font-normal text-gray-900 mb-1">
+                  PDF Invoice Upload
+                </h2>
+                <p className="text-sm text-gray-500">
+                  Upload a PDF invoice to the FastAPI OCR pipeline and review the extracted fields.
+                </p>
+              </div>
+              <PdfInvoiceUpload />
+            </div>
+
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div>
                 <h2 className="text-xl font-normal text-gray-900 mb-1">
